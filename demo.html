@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>md-juice demo</title>
+  <link rel="stylesheet" href="./md-juice.css">
+  <style>
+    html {
+      background-color: var(--mdj-background-color);
+      color: var(--mdj-text-primary-color);
+      min-height: 100%;
+    }
+    body { margin: 0; }
+    #toggle {
+      padding: .5rem 1rem;
+      border-radius: 6px;
+      background: var(--mdj-background-secondary-color);
+      color: var(--mdj-text-primary-color);
+      border: 1px solid var(--mdj-border-color);
+      cursor: pointer;
+    }
+    [data-theme-dark] #toggle {
+      background: var(--mdj-background-secondary-color);
+      color: var(--mdj-text-primary-color);
+      border-color: var(--mdj-border-color);
+    }
+  </style>
+</head>
+<body>
+  <div style="padding:2rem;">
+    <h1 class="markdown-body">md-juice demo</h1>
+
+    <article class="markdown-body">
+      <h2 id="example">Example</h2>
+      <p>This is a demo of the <code>md-juice.css</code> stylesheet. Use the controls below to toggle dark mode.</p>
+
+      <pre><code class="language-javascript">// Example JavaScript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+console.log(greet('md-juice'));
+</code></pre>
+
+      <h3>Alerts</h3>
+      <div class="markdown-alert markdown-alert-note"><div class="markdown-alert-title">Note</div><div>Use CSS variables to theme colors.</div></div>
+
+      <h3>Task list</h3>
+      <ul>
+        <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked> Item one</li>
+        <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Item two</li>
+      </ul>
+
+      <h3>Footnote</h3>
+      <p>Text with a footnote.<sup id="fnref1"><a href="#fn1">1</a></sup></p>
+      <div class="footnotes">
+        <ol>
+          <li id="fn1">Footnote text.</li>
+        </ol>
+      </div>
+
+    </article>
+
+    <div style="margin-top:1rem;">
+      <button id="toggle">Toggle dark</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script>
+    document.getElementById('toggle').addEventListener('click', function(){
+      if (document.documentElement.hasAttribute('data-theme-dark')){
+        document.documentElement.removeAttribute('data-theme-dark');
+      } else {
+        document.documentElement.setAttribute('data-theme-dark','');
+      }
+    });
+  </script>
+</body>
+</html>
