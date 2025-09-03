@@ -58,7 +58,7 @@ Example overrides:
 </style>
 ```
 
-## Super fast "juice" variables — instant light/dark theming
+## Juice shortcuts — instant light/dark theming
 
 md-juice exposes a small set of convenience variables that start with the `--juice-` prefix so you can implement a full light/dark toggle in seconds. The stylesheet maps `--juice-*` into the internal `--mdj-*` tokens, so changing only those few values flips the whole UI.
 
