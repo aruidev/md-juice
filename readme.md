@@ -58,31 +58,51 @@ Example overrides:
 </style>
 ```
 
-### Quick theme shortcut: use .light / .dark classes
+## Super fast "juice" variables — instant light/dark theming
 
-You can also switch themes very easily by adding the helper classes `.light` or `.dark` to a parent element. These are provided as a convenience mapping so you can toggle themes without touching `data-` attributes or individual variables.
+md-juice exposes a small set of convenience variables that start with the `--juice-` prefix so you can implement a full light/dark toggle in seconds. The stylesheet maps `--juice-*` into the internal `--mdj-*` tokens, so changing only those few values flips the whole UI.
 
-Example HTML:
+Why use them
+- Minimal: override a handful of variables instead of many `--mdj-*` tokens.
+- Fast to integrate: useful for quick prototypes, CMS themes, or component libraries.
+- Compatible: works with `.light` / `.dark` classes or `data-theme-dark` attribute.
+
+Example — minimal CSS toggle
 
 ```html
-<!-- light theme -->
-<html class="light">
-  <body>
-    <article class="markdown-body">...</article>
-  </body>
-</html>
+<style>
+  /* light defaults (optional) */
+  :root {
+    --juice-background-color: #ffffff;
+    --juice-link-color: #0969da;
+    --juice-accent-color: #0969da;
+  }
 
-<!-- (toggle by adding/removing the class) -->
-
-<!-- dark theme -->
-<html class="dark">
-  ...
-</html>
+  /* quick dark override (add .dark to html or a parent) */
+  .dark {
+    --juice-background-color: #0d1117;
+    --juice-link-color: #58a6ff;
+    --juice-accent-color: #58a6ff;
+  }
+</style>
 ```
+
+Simple JS toggle
+
+```js
+// toggle dark class on the root element
+document.documentElement.classList.toggle('dark');
+// or use attribute:
+// document.documentElement.setAttribute('data-theme-dark', '');
+```
+
+Notes
+- `--juice-*` is the fastest way to theme an app with md-juice. 
+- for full control, override individual `--mdj-*` tokens.
+- `.light` / `.dark` and `data-theme-dark` are all supported — choose the approach that fits your app.
 
 ### Quick theme variables (juice shortcuts)
 
-For an even easier light / dark switch you can override a small set of convenience variables that start with the `--juice` prefix. The stylesheet maps these `--juice-*` tokens into the actual md-juice tokens so you can flip themes by changing only a few variables (or by toggling `.light` / `.dark` or `data-theme-dark`).
 
 | Token | Light (default) | Dark (default) | Description |
 |---|---:|---:|---|
