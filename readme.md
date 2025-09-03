@@ -67,40 +67,6 @@ Why use them
 - Fast to integrate: useful for quick prototypes, CMS themes, or component libraries.
 - Compatible: works with `.light` / `.dark` classes or `data-theme-dark` attribute.
 
-Example — minimal CSS toggle
-
-```html
-<style>
-  /* light defaults (optional) */
-  :root {
-    --juice-background-color: #ffffff;
-    --juice-link-color: #0969da;
-    --juice-accent-color: #0969da;
-  }
-
-  /* quick dark override (add .dark to html or a parent) */
-  .dark {
-    --juice-background-color: #0d1117;
-    --juice-link-color: #58a6ff;
-    --juice-accent-color: #58a6ff;
-  }
-</style>
-```
-
-Simple JS toggle
-
-```js
-// toggle dark class on the root element
-document.documentElement.classList.toggle('dark');
-// or use attribute:
-// document.documentElement.setAttribute('data-theme-dark', '');
-```
-
-Notes
-- `--juice-*` is the fastest way to theme an app with md-juice. 
-- for full control, override individual `--mdj-*` tokens.
-- `.light` / `.dark` and `data-theme-dark` are all supported — choose the approach that fits your app.
-
 ### Quick theme variables (juice shortcuts)
 
 
@@ -137,8 +103,9 @@ Example: set juice tokens directly (overrides the defaults)
 ```
 
 Notes
-- md-juice maps `--juice-*` into the internal `--mdj-*` variables, so changing `--juice-*` is the fastest way to switch a theme for a whole app.
-- You can toggle dark mode using `document.documentElement.classList.toggle('dark')` (or add/remove `.light`) or with the attribute `data-theme-dark` — all approaches are supported.
+- `--juice-*` is the fastest way to theme an app with md-juice. 
+- for full control, override individual `--mdj-*` tokens.
+- `.light` / `.dark` and `data-theme-dark` are all supported — choose the approach that fits your app.
 
 ## Design tokens (CSS custom properties)
 
