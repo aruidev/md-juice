@@ -1,9 +1,11 @@
 # md-juice
 
-<div>
-  <img width="867" height="772" alt="Captura de pantalla 2025-09-03 100301" src="https://github.com/user-attachments/assets/c1032150-7b72-4159-8645-a978114b9346" />
-  <img width="867" height="772" alt="Captura de pantalla 2025-09-03 100320" src="https://github.com/user-attachments/assets/76df95ad-ca7b-4a30-a14b-85f48f517552" />
-</div>
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/c1032150-7b72-4159-8645-a978114b9346" alt="Light Mode" width="420"></td>
+    <td><img src="https://github.com/user-attachments/assets/76df95ad-ca7b-4a30-a14b-85f48f517552" alt="Dark Mode" width="420"></td>
+  </tr>
+</table>
 
 **md-juice** is a modern, fully customizable CSS theme for Markdown.
 
