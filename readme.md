@@ -7,9 +7,9 @@
   </tr>
 </table>
 
-**md-juice** is a modern, fully customizable CSS theme for Markdown.
+**md-juice** is a modern, fully customizable CSS theme for Markdown HTML output.
 
-It works with any standard Markdown library or parser, including **ngx-markdown**, **marked.js**, and **markdown-it**, making it compatible with any framework like **Angular**, **React**, **Vue**, **Svelte**, **Astro**, or even **without a framework**.
+It works with any standard Markdown library or parser, including **ngx-markdown**, **marked.js**, and **markdown-it**, making it compatible with any framework like **Angular**, **React**, **Vue**, **Svelte**, **Astro**, or **without a framework**.
 
 Inspired by [github-markdown-css](https://github.com/sindresorhus/github-markdown-css), **md-juice is a lightweight, fully tokenized alternative** designed for quick and easy customization using CSS variables.
 
