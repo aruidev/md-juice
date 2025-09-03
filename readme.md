@@ -1,5 +1,7 @@
 # md-juice
 
+<img width="2541" height="752" alt="Captura de pantalla 2025-09-03 094627" src="https://github.com/user-attachments/assets/2779f01b-8d9a-4dd6-999a-baf1e56566eb" />
+
 **md-juice** is a modern, fully customizable CSS theme for Markdown.
 
 It works with any standard Markdown library or parser, including **ngx-markdown**, **marked.js**, and **markdown-it**, making it compatible with any framework like **Angular**, **React**, **Vue**, **Svelte**, **Astro**, or even **without a framework**.
@@ -104,6 +106,9 @@ The following tokens are exposed by `md-juice.css`. Override any of them in `:ro
 | `--mdj-muted-bg` | `transparent` | Reserved muted background token |
 
 ### Dark theme
+
+<img width="2545" height="755" alt="Captura de pantalla 2025-09-03 094641" src="https://github.com/user-attachments/assets/43a5e147-8473-41dd-9dc4-b51b545191d7" />
+
 
 Set `[data-theme-dark]` on a parent element (for example `<body data-theme-dark>`) to switch to the provided dark token set.
 
