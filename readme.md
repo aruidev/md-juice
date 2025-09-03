@@ -40,25 +40,7 @@ Wrap your rendered markdown with the `.markdown-body` class (or apply equivalent
 </article>
 ```
 
-## Quick start
-
-- Import `md-juice.css` to your page or build.
-- Override tokens via `:root` or on a container element to theme.
-- Toggle dark mode by setting `data-theme-dark` on a parent (for example `<body data-theme-dark>`).
-
-Example overrides:
-
-```html
-<link rel="stylesheet" href="/path/to/md-juice.css">
-<style>
-  :root {
-    --mdj-font-size: 18px;
-    --mdj-link-color: #ff6b6b;
-  }
-</style>
-```
-
-## Juice shortcuts — instant light/dark theming
+## "Juice shortcuts" — instant light/dark theming
 
 md-juice exposes a small set of convenience variables that start with the `--juice-` prefix so you can implement a full light/dark toggle in seconds. The stylesheet maps `--juice-*` into the internal `--mdj-*` tokens, so changing only those few values flips the whole UI.
 
