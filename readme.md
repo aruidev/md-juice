@@ -1,8 +1,6 @@
 # md-juice
 
-<img width="867" height="772" alt="Captura de pantalla 2025-09-03 100301" src="https://github.com/user-attachments/assets/c1032150-7b72-4159-8645-a978114b9346" /><img width="867" height="772" alt="Captura de pantalla 2025-09-03 100320" src="https://github.com/user-attachments/assets/76df95ad-ca7b-4a30-a14b-85f48f517552" />
-
-
+<img width="867" height="772" alt="Captura de pantalla 2025-09-03 100301" src="https://github.com/user-attachments/assets/c1032150-7b72-4159-8645-a978114b9346" />
 
 **md-juice** is a modern, fully customizable CSS theme for Markdown.
 
@@ -110,6 +108,8 @@ The following tokens are exposed by `md-juice.css`. Override any of them in `:ro
 ### Dark theme
 
 Set `[data-theme-dark]` on a parent element (for example `<body data-theme-dark>`) to switch to the provided dark token set.
+
+<img width="867" height="772" alt="Captura de pantalla 2025-09-03 100320" src="https://github.com/user-attachments/assets/76df95ad-ca7b-4a30-a14b-85f48f517552" />
 
 Key dark defaults included in `md-juice.css`:
 
