@@ -1,7 +1,7 @@
 :root {
 	/* Color tokens */
 	--mdj-background-color: #ffffff;
-	--mdj-background-secondary-color: #f6f8fa; /* table stripe / alt bg */
+	--mdj-background-secondary-color: #f6f8fa;
 	--mdj-text-primary-color: #1f2328;
 	--mdj-text-secondary-color: #59636e;
 	--mdj-border-color: #d1d9e0;
@@ -35,20 +35,33 @@
 	--mdj-syntax-bg: var(--mdj-code-bg);
 }
 
-/* Dark theme override */
-[data-theme-dark] {
-	--mdj-background-color: #0d1117;
-	--mdj-background-secondary-color: #010409;
-	--mdj-text-primary-color: #c9d1d9;
-	--mdj-text-secondary-color: #8b949e;
-	--mdj-border-color: rgba(110,118,129,0.18);
-	--mdj-link-color: #58a6ff;
-	--mdj-accent-color: #58a6ff;
-	--mdj-code-bg: #0f1720;
-	--mdj-kbd-bg: #0f1720;
-	--mdj-kbd-border: rgba(255,255,255,0.06);
-	--mdj-mark-bg: rgba(255,255,255,0.03);
-}
+    .light,
+    .dark {
+        --mdj-background-color: var(--juice-background-color);
+        --mdj-background-secondary-color: var(--juice-background-secondary-color);
+        --mdj-text-primary-color: var(--juice-text-primary-color);
+        --mdj-text-secondary-color: var(--juice-text-secondary-color);
+        --mdj-border-color: var(--juice-border-color);
+        --mdj-link-color: var(--juice-link-color);
+        --mdj-accent-color: var(--juice-accent-color);
+        --mdj-code-bg: var(--juice-code-bg);
+        --mdj-kbd-bg: var(--juice-kbd-bg);
+    }
+
+    /* Dark theme override */
+    [data-theme-dark] {
+        --mdj-background-color: #0d1117;
+        --mdj-background-secondary-color: #010409;
+        --mdj-text-primary-color: #c9d1d9;
+        --mdj-text-secondary-color: #8b949e;
+        --mdj-border-color: rgba(110,118,129,0.18);
+        --mdj-link-color: #58a6ff;
+        --mdj-accent-color: #58a6ff;
+        --mdj-code-bg: #0f1720;
+        --mdj-kbd-bg: #0f1720;
+        --mdj-kbd-border: rgba(255,255,255,0.06);
+        --mdj-mark-bg: rgba(255,255,255,0.03);
+    }
 
 /* Base */
 .markdown-body {
@@ -140,10 +153,10 @@
 
 /* Tables - simplified and responsive */
 .markdown-body table { width: 100%; border-collapse: collapse; margin: 0 0 1rem 0; }
+.markdown-body th { background-color: var(--mdj-background-secondary-color); }
 .markdown-body th,
 .markdown-body td { padding: 6px 13px; border: 1px solid var(--mdj-border-color); }
 .markdown-body tr { background-color: var(--mdj-background-color); }
-.markdown-body tr:nth-child(2n) { background-color: var(--mdj-background-secondary-color); }
 
 /* Images */
 .markdown-body img { max-width: 100%; border-style: none; }

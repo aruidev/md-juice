@@ -16,22 +16,9 @@ Based on [github-markdown-css](https://github.com/sindresorhus/github-markdown-c
 ## Features
 
 - Fully customizable colors and styles using CSS variables.
-- Supports both light and dark mode.
+- Super fast "juice" variables — instant light/dark theming
 - Styled lists, tables, code blocks, links, footnotes, and more, all with a clean, modern look.
-- Easy to integrate into any project, regardless of the framework.
-
-## Tailwind Compatibility
-
-md-juice works seamlessly alongside **Tailwind CSS**. Since it uses standard CSS with variables (design tokens), you can combine md-juice with Tailwind utility classes without conflicts.  
-
-**Tips for integration:**
-
-- **Load order matters:** Include md-juice **after Tailwind** if you want its styles to take precedence on Markdown elements.  
-- **Class coexistence:** md-juice styles are applied to selectors like `.markdown-body h1` or `.markdown-body a`, which will not interfere with Tailwind classes. You can use Tailwind for layout, spacing, or responsive utilities while md-juice handles Markdown styling.  
-- **Custom colors:** You can map md-juice CSS variables to Tailwind theme colors (`theme.extend.colors`) for a fully consistent design system across your project.  
-
-This makes md-juice flexible for projects that already rely on Tailwind, allowing you to maintain a consistent look while keeping Markdown styling clean and modern.
-
+- Easy to integrate into any project.
 
 ## Installation
 
@@ -55,7 +42,7 @@ Wrap your rendered markdown with the `.markdown-body` class (or apply equivalent
 
 ## Quick start
 
-- Include `md-juice.css` in your page or build.
+- Import `md-juice.css` to your page or build.
 - Override tokens via `:root` or on a container element to theme.
 - Toggle dark mode by setting `data-theme-dark` on a parent (for example `<body data-theme-dark>`).
 
@@ -71,6 +58,67 @@ Example overrides:
 </style>
 ```
 
+### Quick theme shortcut: use .light / .dark classes
+
+You can also switch themes very easily by adding the helper classes `.light` or `.dark` to a parent element. These are provided as a convenience mapping so you can toggle themes without touching `data-` attributes or individual variables.
+
+Example HTML:
+
+```html
+<!-- light theme -->
+<html class="light">
+  <body>
+    <article class="markdown-body">...</article>
+  </body>
+</html>
+
+<!-- (toggle by adding/removing the class) -->
+
+<!-- dark theme -->
+<html class="dark">
+  ...
+</html>
+```
+
+### Quick theme variables (juice shortcuts)
+
+For an even easier light / dark switch you can override a small set of convenience variables that start with the `--juice` prefix. The stylesheet maps these `--juice-*` tokens into the actual md-juice tokens so you can flip themes by changing only a few variables (or by toggling `.light` / `.dark` or `data-theme-dark`).
+
+| Token | Light (default) | Dark (default) | Description |
+|---|---:|---:|---|
+| `--juice-background-color` | `#ffffff` | `#0d1117` | Page / surface background |
+| `--juice-background-secondary-color` | `#f6f8fa` | `#010409` | Secondary surface (table headers, small panels) |
+| `--juice-text-primary-color` | `#1f2328` | `#c9d1d9` | Main body text color |
+| `--juice-text-secondary-color` | `#59636e` | `#8b949e` | Muted / secondary text |
+| `--juice-border-color` | `#d1d9e0` | `rgba(110,118,129,0.18)` | Rule and table border color |
+| `--juice-link-color` | `#0969da` | `#58a6ff` | Links and accents |
+| `--juice-accent-color` | `#0969da` | `#58a6ff` | Accent color used for focus / highlights |
+| `--juice-code-bg` | `#f6f8fa` | `#0f1720` | Code block / inline code background |
+| `--juice-kbd-bg` | `#f6f8fa` | `#0f1720` | <kbd> background (keys) |
+
+Example: set juice tokens directly (overrides the defaults)
+
+
+```html
+<!-- your 'styles.css' -->
+<style>
+  :root {
+    /* light defaults (optional) */
+    --juice-background-color: #ffffff;
+    --juice-link-color: #0969da;
+  }
+
+  /* quick dark override */
+  .dark {
+    --juice-background-color: #0d1117;
+    --juice-link-color: #58a6ff;
+  }
+</style>
+```
+
+Notes
+- md-juice maps `--juice-*` into the internal `--mdj-*` variables, so changing `--juice-*` is the fastest way to switch a theme for a whole app.
+- You can toggle dark mode using `document.documentElement.classList.toggle('dark')` (or add/remove `.light`) or with the attribute `data-theme-dark` — all approaches are supported.
 
 ## Design tokens (CSS custom properties)
 
@@ -150,6 +198,18 @@ Key dark defaults included in `md-juice.css`:
   document.documentElement.setAttribute('data-theme-dark', '');
   document.documentElement.removeAttribute('data-theme-dark');
   ```
+
+## Tailwind Compatibility
+
+md-juice works seamlessly alongside **Tailwind CSS**. Since it uses standard CSS with variables (design tokens), you can combine md-juice with Tailwind utility classes without conflicts.  
+
+**Tips for integration:**
+
+- **Load order matters:** Include md-juice **after Tailwind** if you want its styles to take precedence on Markdown elements.  
+- **Class coexistence:** md-juice styles are applied to selectors like `.markdown-body h1` or `.markdown-body a`, which will not interfere with Tailwind classes. You can use Tailwind for layout, spacing, or responsive utilities while md-juice handles Markdown styling.  
+- **Custom colors:** You can map md-juice CSS variables to Tailwind theme colors (`theme.extend.colors`) for a fully consistent design system across your project.  
+
+This makes md-juice flexible for projects that already rely on Tailwind, allowing you to maintain a consistent look while keeping Markdown styling clean and modern.
 
 ## Syntax highlighting (tip)
 
