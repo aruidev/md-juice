@@ -25,7 +25,7 @@ Inspired by [github-markdown-css](https://github.com/sindresorhus/github-markdow
 Install via npm:
 
 ```bash
-npm install @arui/md-juice
+npm install @aruidev/md-juice
 ```
 
 Or add the stylesheet directly
