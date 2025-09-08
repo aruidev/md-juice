@@ -11,7 +11,7 @@
 
 **md-juice** is a tiny, token‑driven CSS theme for rendered Markdown. Drop it in, wrap output with `.markdown-body`, override a few variables—done.
 
-Works with any renderer: ngx-markdown, marked, markdown-it, React Markdown, Astro, SvelteKit, plain server HTML, etc.
+Framework agnostic — it can be used in any environment or setup. Compatible with popular Markdown renderers (ngx-markdown, marked, markdown-it, React Markdown) and works seamlessly within modern frameworks (React, Angular, Astro, plain HTML, etc.).
 
 ## Features
 
