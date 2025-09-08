@@ -1,6 +1,6 @@
 {
   "name": "@aruidev/md-juice",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Lightweight, tokenized CSS stylesheet for styling Markdown HTML output",
   "main": "index.cjs",
   "module": "index.js",

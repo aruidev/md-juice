@@ -15,7 +15,7 @@ Framework agnostic — it can be used in any environment or setup. Compatible wi
 
 ## Features
 
-* Fast theming layer (`--juice-*`) – 8 tokens flip the whole look.
+* Fast theming layer (`--juice-*`) – a small set of tokens flip the whole look.
 * Fine control layer (`--mdj-*`) – override only what you need.
 * Light / dark via attribute or class (`[data-theme="dark"]` or `.juice-dark`).
 * Optional system auto dark (prefers-color-scheme) fallback included.
@@ -71,6 +71,17 @@ scope.setAttribute('data-theme','light');  // force light
 scope.removeAttribute('data-theme');       // fall back to prefers-color-scheme block
 ```
 
+CSS Customization:
+```css
+.md-juice {
+  --juice-color-bg: (var(--background-color), white);
+}
+
+.md-juice[data-theme='dark'] {
+  --juice-color-bg: (var(--background-color), black);
+}
+```
+
 ## Layer 1 – Fast tokens (`--juice-*`)
 
 Set these to theme quickly. All granular tokens derive from them unless you override `--mdj-*` directly.
@@ -114,6 +125,7 @@ These fast tokens drive base typography & spacing radii; granular `--mdj-*` coun
 | Token | Maps to granular | Purpose |
 |-------|------------------|---------|
 | `--juice-font-family-base` | `--mdj-font-family` | Base text font stack |
+| `--juice-font-family-monospace` | `--mdj-monospace` | Code / monospace font stack |
 | `--juice-font-size-base` | `--mdj-font-size` | Root font size (affects rem) |
 | `--juice-line-height-base` | `--mdj-line-height` | Global line height |
 | `--juice-radius-base` | `--mdj-radius` | Shared corner radius (code, kbd, etc.) |
