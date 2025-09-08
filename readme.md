@@ -2,8 +2,10 @@
 
 <table>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/c1032150-7b72-4159-8645-a978114b9346" alt="Light Mode" width="400"></td>
-    <td><img src="https://github.com/user-attachments/assets/76df95ad-ca7b-4a30-a14b-85f48f517552" alt="Dark Mode" width="400"></td>
+    <td><img width="939" height="1031" alt="md-juice (light)" src="https://github.com/user-attachments/assets/af3ec429-9684-4b71-aebb-708bb8b2fdf4" width=400/>
+</td>
+    <td><img width="944" height="1038" alt="Captura de pantalla 2025-09-08 160931" src="https://github.com/user-attachments/assets/de6e91cd-69b5-403c-a46f-ca026276624b" width=400/>
+</td>
   </tr>
 </table>
 
