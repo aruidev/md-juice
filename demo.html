@@ -1,103 +1,141 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>md-juice demo</title>
-  <link rel="stylesheet" href="./md-juice.css">
-  <style>
-    html {
-      background-color: var(--mdj-background-color);
-      color: var(--mdj-text-primary-color);
-      min-height: 100%;
-    }
-    body { margin: 0; }
-    #toggle {
-      padding: .5rem 1rem;
-      border-radius: 6px;
-      background: var(--mdj-background-secondary-color);
-      color: var(--mdj-text-primary-color);
-      border: 1px solid var(--mdj-border-color);
-      cursor: pointer;
-    }
-    [data-theme-dark] #toggle {
-      background: var(--mdj-background-secondary-color);
-      color: var(--mdj-text-primary-color);
-      border-color: var(--mdj-border-color);
-    }
-  </style>
+<meta charset="utf-8">
+<title>md-juice demo</title>
+<link rel="stylesheet" href="./md-juice.css">
+<!--
+md-juice quick demo
+Layer 1 (fast): override a few --juice-color-* tokens (light + dark)
+Layer 2 (granular): optionally override --mdj-* for fine tuning (none needed here)
+Toggle: sets data-theme="dark" / "light"
+-->
+<style>
+:root {
+  /* Fast tokens (light) */
+  --juice-color-bg: #ffffff;
+  --juice-color-bg-alt: #f6f8fa;
+  --juice-color-text: #1f2328;
+  --juice-color-text-secondary: #59636e;
+  --juice-color-border: #d1d9e0;
+  --juice-color-interactive: #4f46e5; /* accent / links */
+}
+
+/* Fast tokens (dark) */
+:root[data-theme="dark"] {
+  --juice-color-bg: #0d1117;
+  --juice-color-bg-alt: #10151c;
+  --juice-color-text: #c9d1d9;
+  --juice-color-text-secondary: #8b949e;
+  --juice-color-border: rgba(110,118,129,0.40);
+  --juice-color-interactive: #818cf8;
+  --juice-color-surface-code: #0f1720;
+}
+
+body {
+  margin: 0;
+  font-family: var(--mdj-font-family);
+  background: var(--mdj-background-color);
+  color: var(--mdj-text-primary-color);
+}
+
+/* Default Tailwind Transitions */
+html, body {
+  transition-property: color, background-color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+#theme-toggle {
+  padding: .45rem .9rem;
+  border: 1px solid var(--mdj-border-color);
+  background: var(--mdj-background-secondary-color);
+  color: var(--mdj-text-primary-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color var(--mdj-transition), color var(--mdj-transition), border-color var(--mdj-transition);
+}
+#theme-toggle:hover { background: var(--mdj-background-color); }
+
+footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: .75rem;
+  align-items: center;
+  color: var(--mdj-text-secondary-color);
+}
+</style>
 </head>
 <body>
-  <div style="padding:2rem;">
-    <h1 class="markdown-body">md-juice demo</h1>
+<div class="wrapper">
+  <article class="markdown-body">
+    <h1>md-juice demo</h1>
 
-    <article class="markdown-body">
-      <h2 id="example">Example</h2>
-      <p>This is a demo of the <code>md-juice.css</code> stylesheet. Use the controls below to toggle dark mode.</p>
+    <h2>Example</h2>
+    <p>This is a demo of the <code>md-juice.css</code> stylesheet. Fast theming = set a handful of <code>--juice-*</code> tokens. Fine tuning = override specific <code>--mdj-*</code> only when needed.</p>
 
-      <pre><code class="language-javascript">// Example JavaScript
+    <pre><code class="language-javascript">// Example JavaScript
 function greet(name) {
   return `Hello, ${name}!`;
 }
-console.log(greet('md-juice'));
-</code></pre>
+console.log(greet('md-juice'));</code></pre>
 
-      <h3>Alerts</h3>
-      <div class="markdown-alert markdown-alert-note"><div class="markdown-alert-title">Note</div><div>Use CSS variables to theme colors.</div></div>
+    <h2>Alerts</h2>
+    <blockquote class="markdown-alert markdown-alert-note">
+      <p class="markdown-alert-title">Note</p>
+      <p>Use CSS variables to theme colors.</p>
+    </blockquote>
 
-      <h3>Task list</h3>
-      <ul>
-        <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked> Item one</li>
-        <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> Item two</li>
-      </ul>
+    <blockquote class="markdown-alert markdown-alert-warning">
+      <p class="markdown-alert-title">Warning</p>
+      <p>Ensure you use BOTH classes: <code>markdown-alert</code> + variant.</p>
+    </blockquote>
 
-      <h3>Footnote</h3>
+    <h2>Task list</h2>
+    <ul class="contains-task-list">
+      <li class="task-list-item"><input type="checkbox" checked> Item one</li>
+      <li class="task-list-item"><input type="checkbox"> Item two</li>
+    </ul>
+
+<h3>Footnote</h3>
       <p>Text with a footnote.<sup id="fnref1"><a href="#fn1">1</a></sup></p>
       <div class="footnotes">
         <ol>
           <li id="fn1">Footnote text.</li>
         </ol>
       </div>
+  </article>
 
-      <h3>Table</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-            <th>Header 3</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Row 1, Cell 1</td>
-            <td>Row 1, Cell 2</td>
-            <td>Row 1, Cell 3</td>
-          </tr>
-          <tr>
-            <td>Row 2, Cell 1</td>
-            <td>Row 2, Cell 2</td>
-            <td>Row 2, Cell 3</td>
-          </tr>
-        </tbody>
-      </table>
+  <footer>
+    <button id="theme-toggle" type="button">Toggle dark</button>
+    <span>Current: <code id="mode-label">light</code></span>
+  </footer>
+</div>
 
-    </article>
+<script>
+const root = document.documentElement;
+const btn = document.getElementById('theme-toggle');
+const label = document.getElementById('mode-label');
 
-    <div style="margin-top:1rem;">
-      <button id="toggle">Toggle dark</button>
-    </div>
-  </div>
+function setMode(mode) {
+  root.setAttribute('data-theme', mode);
+  label.textContent = mode;
+}
 
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script>
-    document.getElementById('toggle').addEventListener('click', function(){
-      if (document.documentElement.hasAttribute('data-theme-dark')){
-        document.documentElement.removeAttribute('data-theme-dark');
-      } else {
-        document.documentElement.setAttribute('data-theme-dark','');
-      }
-    });
-  </script>
+btn.addEventListener('click', () => {
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  setMode(next);
+});
+
+if(!root.hasAttribute('data-theme')) setMode('light');
+</script>
 </body>
 </html>

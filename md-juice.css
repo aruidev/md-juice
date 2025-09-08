@@ -1,30 +1,71 @@
-:root {
-	/* Color tokens */
-	--mdj-background-color: #ffffff;
-	--mdj-background-secondary-color: #f6f8fa;
-	--mdj-text-primary-color: #1f2328;
-	--mdj-text-secondary-color: #59636e;
-	--mdj-border-color: #d1d9e0;
-	--mdj-link-color: #0969da;
-	--mdj-accent-color: #0969da;
-	--mdj-code-bg: #f6f8fa;
-	--mdj-kbd-bg: #f6f8fa;
-	--mdj-kbd-border: rgba(209,217,224,0.8);
-	--mdj-mark-bg: #fff8c5;
+/*
+=====================================================================
+ md-juice design tokens
 
-	/* Sizing & typography */
-	--mdj-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+ Layer 1 (fast tokens)   : --juice-*  -> minimal, broad theme surface.
+ Layer 2 (granular)      : --mdj-*    -> fine control per component.
+
+ Rule of use:
+ 1. Quick theme: override a handful of --juice-* tokens after this file.
+ 2. Fine tuning: override specific --mdj-* tokens (they win over juice).
+ 3. Dark mode: add [data-theme="dark"] or .juice-dark on a container.
+ 4. Optional auto-dark: enable the prefers-color-scheme block below.
+
+ This file intentionally keeps the fast token set small for simplicity.
+=====================================================================
+*/
+:root {
+	/* ------------------------------------------------------------------ */
+	/* Layer 1: FAST TOKENS (override these for rapid theming)            */
+	/* ------------------------------------------------------------------ */
+	--juice-color-bg: #ffffff;
+	--juice-color-bg-alt: #f6f8fa;
+	/* secondary surface */
+	--juice-color-text: #1f2328;
+	--juice-color-text-secondary: #59636e;
+	--juice-color-border: #d1d9e0;
+	--juice-color-interactive: #0969da;
+	--juice-color-accent: var(--juice-color-interactive);
+	--juice-color-surface-code: var(--juice-color-bg-alt);
+	/* dedicated code block surface */
+
+	/* Typography & layout primitives */
+	--juice-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+	--juice-font-size-base: 16px;
+	--juice-line-height-base: 1.5;
+	--juice-radius-base: 6px;
+	--juice-transition: 150ms; /* default Tailwind CSS transitions duration */
+	--juice-transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* default Tailwind CSS timing function */
+
+	/* ------------------------------------------------------------------ */
+	/* Layer 2: GRANULAR TOKENS (fine control – override as needed)       */
+	/* ------------------------------------------------------------------ */
+	--mdj-background-color: var(--juice-color-bg);
+	--mdj-background-secondary-color: var(--juice-color-bg-alt);
+	--mdj-text-primary-color: var(--juice-color-text);
+	--mdj-text-secondary-color: var(--juice-color-text-secondary);
+	--mdj-border-color: var(--juice-color-border);
+	--mdj-link-color: var(--juice-color-interactive);
+	--mdj-accent-color: var(--juice-color-accent);
+	--mdj-code-bg: var(--juice-color-surface-code);
+	--mdj-kbd-bg: var(--juice-color-surface-code);
+	--mdj-kbd-border: var(--juice-color-border);
+	--mdj-mark-bg: var(--juice-color-bg-alt);
+	--mdj-table-th-bg: var(--juice-color-bg-alt);
+	--mdj-table-tr-bg: var(--juice-color-bg);
+
+	--mdj-font-family: var(--juice-font-family-base);
 	--mdj-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-	--mdj-font-size: 16px;
-	--mdj-line-height: 1.5;
-	--mdj-radius: 6px;
+	--mdj-font-size: var(--juice-font-size-base);
+	--mdj-line-height: var(--juice-line-height-base);
+	--mdj-radius: var(--juice-radius-base);
 	--mdj-hr-height: 1px;
 
-	/* Interaction */
 	--mdj-focus-outline: 2px solid var(--mdj-accent-color);
 	--mdj-muted-bg: transparent;
+	--mdj-transition: var(--juice-transition);
+	--mdj-transition-timing: var(--juice-transition-timing);
 
-	/* Syntax highlighting tokens (optional) */
 	--mdj-syntax-comment: #59636e;
 	--mdj-syntax-keyword: #cf222e;
 	--mdj-syntax-function: #0550ae;
@@ -35,44 +76,72 @@
 	--mdj-syntax-bg: var(--mdj-code-bg);
 }
 
-    .light,
-    .dark {
-        --mdj-background-color: var(--juice-background-color);
-        --mdj-background-secondary-color: var(--juice-background-secondary-color);
-        --mdj-text-primary-color: var(--juice-text-primary-color);
-        --mdj-text-secondary-color: var(--juice-text-secondary-color);
-        --mdj-border-color: var(--juice-border-color);
-        --mdj-link-color: var(--juice-link-color);
-        --mdj-accent-color: var(--juice-accent-color);
-        --mdj-code-bg: var(--juice-code-bg);
-        --mdj-kbd-bg: var(--juice-kbd-bg);
-    }
 
-    /* Dark theme override */
-    [data-theme-dark] {
-        --mdj-background-color: #0d1117;
-        --mdj-background-secondary-color: #010409;
-        --mdj-text-primary-color: #c9d1d9;
-        --mdj-text-secondary-color: #8b949e;
-        --mdj-border-color: rgba(110,118,129,0.18);
-        --mdj-link-color: #58a6ff;
-        --mdj-accent-color: #58a6ff;
-        --mdj-code-bg: #0f1720;
-        --mdj-kbd-bg: #0f1720;
-        --mdj-kbd-border: rgba(255,255,255,0.06);
-        --mdj-mark-bg: rgba(255,255,255,0.03);
-    }
+/* ------------------------------------------------------------------ */
+/* Dark theme (explicit) — use ONE: [data-theme="dark"] or .juice-dark */
+/* ------------------------------------------------------------------ */
+[data-theme="dark"],
+.juice-dark {
+	--juice-color-bg: #0d1117;
+	--juice-color-bg-alt: #010409;
+	--juice-color-text: #c9d1d9;
+	--juice-color-text-secondary: #8b949e;
+	--juice-color-border: rgba(110, 118, 129, 0.40);
+	--juice-color-interactive: #58a6ff;
+	--juice-color-accent: var(--juice-color-interactive);
+	--juice-color-surface-code: #0f1720;
+	/* Granular adjustments unique to dark */
+	--mdj-kbd-border: rgba(255, 255, 255, 0.06);
+	--mdj-mark-bg: rgba(255, 255, 255, 0.03);
+}
 
-/* Base */
+/* Optional system dark fallback (no explicit theme set) */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme]):not(.juice-light):not(.juice-dark) {
+		--juice-color-bg: #0d1117;
+		--juice-color-bg-alt: #010409;
+		--juice-color-text: #c9d1d9;
+		--juice-color-text-secondary: #8b949e;
+		--juice-color-border: rgba(110, 118, 129, 0.40);
+		--juice-color-interactive: #58a6ff;
+		--juice-color-accent: var(--juice-color-interactive);
+		--juice-color-surface-code: #0f1720;
+		--mdj-kbd-border: rgba(255, 255, 255, 0.06);
+		--mdj-mark-bg: rgba(255, 255, 255, 0.03);
+	}
+}
+
+/* Base (solo modo claro por defecto) */
 .markdown-body {
-	color-scheme: light dark;
-	margin: 0;
+    color-scheme: light;
 	color: var(--mdj-text-primary-color);
 	background-color: var(--mdj-background-color);
 	font-family: var(--mdj-font-family);
 	font-size: var(--mdj-font-size);
 	line-height: var(--mdj-line-height);
 	word-wrap: break-word;
+}
+
+/* Cuando el contenedor está en dark, forzar esquema oscuro */
+:root[data-theme="dark"] .markdown-body,
+.juice-dark .markdown-body {
+    color-scheme: dark;
+}
+
+/* Smooth color transitions for theming */
+/* Standard Tailwind CSS transition values */
+.markdown-body,
+.markdown-body * {
+	transition-property: color, background, background-color, border-color;
+	transition-duration: var(--mdj-transition, 150ms);
+	transition-timing-function: var(--mdj-transition-timing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Optional opt‑out helper (apply to a subtree if needed) */
+.juice-no-transition,
+.juice-no-transition * {
+    transition-property: color, background-color, border-color;
+    transition-duration: 0ms !important;
 }
 
 /* Headings */
@@ -89,51 +158,122 @@
 	color: var(--mdj-text-primary-color);
 }
 
-.markdown-body h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid var(--mdj-border-color); }
-.markdown-body h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid var(--mdj-border-color); }
-.markdown-body h3 { font-size: 1.25em; }
-.markdown-body h4 { font-size: 1em; }
-.markdown-body h5 { font-size: .875em; }
-.markdown-body h6 { font-size: .85em; color: var(--mdj-text-secondary-color); }
+.markdown-body h1 {
+	font-size: 2em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid var(--mdj-border-color);
+}
+
+.markdown-body h2 {
+	font-size: 1.5em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid var(--mdj-border-color);
+}
+
+.markdown-body h3 {
+	font-size: 1.25em;
+}
+
+.markdown-body h4 {
+	font-size: 1em;
+}
+
+.markdown-body h5 {
+	font-size: .875em;
+}
+
+.markdown-body h6 {
+	font-size: .85em;
+	color: var(--mdj-text-secondary-color);
+}
 
 /* Anchors (show link icon on hover) */
-.markdown-body .anchor { float: left; padding-right: .25rem; margin-left: -20px; line-height: 1; }
+.markdown-body .anchor {
+	float: left;
+	padding-right: .25rem;
+	margin-left: -20px;
+	line-height: 1;
+}
+
 .markdown-body h1:hover .anchor,
 .markdown-body h2:hover .anchor,
 .markdown-body h3:hover .anchor,
 .markdown-body h4:hover .anchor,
 .markdown-body h5:hover .anchor,
-.markdown-body h6:hover .anchor { text-decoration: none; }
-.markdown-body .anchor .octicon-link { visibility: hidden; color: var(--mdj-text-primary-color); }
+.markdown-body h6:hover .anchor {
+	text-decoration: none;
+}
+
+.markdown-body .anchor .octicon-link {
+	visibility: hidden;
+	color: var(--mdj-text-primary-color);
+}
+
 .markdown-body h1:hover .anchor .octicon-link,
 .markdown-body h2:hover .anchor .octicon-link,
-.markdown-body h3:hover .anchor .octicon-link { visibility: visible; }
+.markdown-body h3:hover .anchor .octicon-link {
+	visibility: visible;
+}
 
 /* Text content */
-.markdown-body p { margin: 0 0 1rem 0; }
-.markdown-body small { font-size: 90%; }
-.markdown-body mark { background-color: var(--mdj-mark-bg); color: var(--mdj-text-primary-color); }
+.markdown-body p {
+	margin: 0 0 1rem 0;
+}
+
+.markdown-body small {
+	font-size: 90%;
+}
+
+.markdown-body mark {
+	background-color: var(--mdj-mark-bg);
+	color: var(--mdj-text-primary-color);
+}
 
 /* Links */
-.markdown-body a { color: var(--mdj-link-color); text-decoration: none; background-color: transparent; }
-.markdown-body a:hover { text-decoration: underline; }
+.markdown-body a {
+	color: var(--mdj-link-color);
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.markdown-body a:hover {
+	text-decoration: underline;
+}
 
 /* Lists */
 .markdown-body ul,
-.markdown-body ol { padding-left: 2em; margin: 0 0 1rem 0; }
-.markdown-body ul { list-style: disc outside; }
-.markdown-body ol { list-style: decimal outside; }
-.markdown-body li + li { margin-top: .25em; }
+.markdown-body ol {
+	padding-left: 2em;
+	margin: 0 0 1rem 0;
+}
+
+.markdown-body ul {
+	list-style: disc outside;
+}
+
+.markdown-body ol {
+	list-style: decimal outside;
+}
+
+.markdown-body li+li {
+	margin-top: .25em;
+}
 
 .markdown-body ul li::marker {
-  color: var(--mdj-text-secondary-color);
+	color: var(--mdj-text-secondary-color);
 }
 
 .markdown-body ol li::marker {
-  color: var(--mdj-text-secondary-color);
+	color: var(--mdj-text-secondary-color);
 }
-.markdown-body ul ul li::marker { color: var(--mdj-text-secondary-color); }
-.markdown-body ol ol li::marker { color: var(--mdj-text-secondary-color); }
+
+.markdown-body ul ul li::marker {
+	color: var(--mdj-text-secondary-color);
+}
+
+.markdown-body ol ol li::marker {
+	color: var(--mdj-text-secondary-color);
+}
 
 /* Blockquote */
 .markdown-body blockquote {
@@ -152,24 +292,58 @@
 }
 
 /* Tables - simplified and responsive */
-.markdown-body table { width: 100%; border-collapse: collapse; margin: 0 0 1rem 0; }
-.markdown-body th { background-color: var(--mdj-background-secondary-color); }
+.markdown-body table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 0 1rem 0;
+}
+
+.markdown-body th {
+	background-color: var(--mdj-table-th-bg);
+}
+
 .markdown-body th,
-.markdown-body td { padding: 6px 13px; border: 1px solid var(--mdj-border-color); }
-.markdown-body tr { background-color: var(--mdj-background-color); }
+.markdown-body td {
+	padding: 6px 13px;
+	border: 1px solid var(--mdj-border-color);
+}
+
+.markdown-body tr {
+	background-color: var(--mdj-table-tr-bg);
+}
 
 /* Images */
-.markdown-body img { max-width: 100%; border-style: none; }
+.markdown-body img {
+	max-width: 100%;
+	border-style: none;
+}
 
 /* Code and preformatted */
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre,
-.markdown-body samp { font-family: var(--mdj-monospace); font-size: 0.95em; }
+.markdown-body samp {
+	font-family: var(--mdj-monospace);
+	font-size: 0.95em;
+}
 
-.markdown-body pre { overflow: auto; padding: .75rem; background: var(--mdj-code-bg); border-radius: var(--mdj-radius); }
-.markdown-body pre code { display: block; }
-.markdown-body code { background: transparent; padding: .15rem .3rem; border-radius: 4px; background-color: var(--mdj-code-bg); }
+.markdown-body pre {
+	overflow: auto;
+	padding: .75rem;
+	background: var(--mdj-code-bg);
+	border-radius: var(--mdj-radius);
+}
+
+.markdown-body pre code {
+	display: block;
+}
+
+.markdown-body code {
+	background: transparent;
+	padding: .15rem .3rem;
+	border-radius: 4px;
+	background-color: var(--mdj-code-bg);
+}
 
 /* Keyboard key */
 .markdown-body kbd {
@@ -184,18 +358,33 @@
 }
 
 /* Forms and details */
-.markdown-body details { display: block; margin: 0 0 1rem 0; }
-.markdown-body summary { cursor: pointer; }
+.markdown-body details {
+	display: block;
+	margin: 0 0 1rem 0;
+}
+
+.markdown-body summary {
+	cursor: pointer;
+}
 
 /* Accessibility focus */
 .markdown-body a:focus,
 .markdown-body [role=button]:focus,
 .markdown-body input:focus,
-.markdown-body textarea:focus { outline: var(--mdj-focus-outline); outline-offset: -2px; }
+.markdown-body textarea:focus {
+	outline: var(--mdj-focus-outline);
+	outline-offset: -2px;
+}
 
 /* Small utility helpers used by markdown output */
-.markdown-body .absent { color: #d1242f; }
-.markdown-body .emoji { vertical-align: text-top; background-color: transparent; }
+.markdown-body .absent {
+	color: #d1242f;
+}
+
+.markdown-body .emoji {
+	vertical-align: text-top;
+	background-color: transparent;
+}
 
 /* ------------------- OPTIONAL EXTRAS (GitHub-like) ------------------- */
 
@@ -209,42 +398,155 @@
 	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'/%3E%3C/svg%3E");
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'/%3E%3C/svg%3E");
 }
+
 .markdown-body h1:hover .anchor .octicon-link,
 .markdown-body h2:hover .anchor .octicon-link,
 .markdown-body h3:hover .anchor .octicon-link,
 .markdown-body h4:hover .anchor .octicon-link,
 .markdown-body h5:hover .anchor .octicon-link,
-.markdown-body h6:hover .anchor .octicon-link { visibility: visible; }
+.markdown-body h6:hover .anchor .octicon-link {
+	visibility: visible;
+}
 
 /* Minimal syntax highlighting classes (map from original .pl-* classes) */
-.markdown-body .pl-c { color: var(--mdj-syntax-comment); }
-.markdown-body .pl-k { color: var(--mdj-syntax-keyword); }
-.markdown-body .pl-en,
-.markdown-body .pl-e { color: var(--mdj-syntax-constant); }
-.markdown-body .pl-smi,
-.markdown-body .pl-s { color: var(--mdj-syntax-function); }
-.markdown-body .pl-sr { color: var(--mdj-syntax-string); }
-.markdown-body .pl-v { color: var(--mdj-syntax-number); }
-.markdown-body .pl-mh { color: var(--mdj-syntax-type); }
-.markdown-body .pl-mi { font-style: italic; color: var(--mdj-text-primary-color); }
-.markdown-body .pl-md { background-color: rgba(255,235,233,0.8); color: #82071e; }
+.markdown-body .pl-c {
+	color: var(--mdj-syntax-comment);
+}
 
-/* Alert variants (note/important/warning/tip/caution) */
-.markdown-body .markdown-alert { padding: 0.5rem 1rem; margin-bottom: 1rem; color: inherit; border-left: .25em solid var(--mdj-border-color); }
-.markdown-body .markdown-alert .markdown-alert-title { display:flex; align-items:center; font-weight:500; }
-.markdown-body .markdown-alert.markdown-alert-note { border-left-color: var(--mdj-link-color); color: var(--mdj-link-color); }
-.markdown-body .markdown-alert.markdown-alert-important { border-left-color: var(--mdj-syntax-type); color: var(--mdj-syntax-type); }
-.markdown-body .markdown-alert.markdown-alert-warning { border-left-color: #9a6700; color: #9a6700; }
-.markdown-body .markdown-alert.markdown-alert-tip { border-left-color: #1a7f37; color: #1a7f37; }
-.markdown-body .markdown-alert.markdown-alert-caution { border-left-color: #cf222e; color: #d1242f; }
+.markdown-body .pl-k {
+	color: var(--mdj-syntax-keyword);
+}
+
+.markdown-body .pl-en,
+.markdown-body .pl-e {
+	color: var(--mdj-syntax-constant);
+}
+
+.markdown-body .pl-smi,
+.markdown-body .pl-s {
+	color: var(--mdj-syntax-function);
+}
+
+.markdown-body .pl-sr {
+	color: var(--mdj-syntax-string);
+}
+
+.markdown-body .pl-v {
+	color: var(--mdj-syntax-number);
+}
+
+.markdown-body .pl-mh {
+	color: var(--mdj-syntax-type);
+}
+
+.markdown-body .pl-mi {
+	font-style: italic;
+	color: var(--mdj-text-primary-color);
+}
+
+.markdown-body .pl-md {
+	background-color: rgba(255, 235, 233, 0.8);
+	color: #82071e;
+}
+
+/* Alert variants (requires TWO classes: base + variant)
+   Usage:
+     <blockquote class="markdown-alert markdown-alert-warning">
+       <p class="markdown-alert-title">...</p>
+       <p>Body...</p>
+     </blockquote> */
+.markdown-body .markdown-alert {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    color: inherit;
+    border-left: .25em solid var(--mdj-border-color);
+}
+
+.markdown-body .markdown-alert .markdown-alert-title {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note {
+    border-left-color: var(--mdj-link-color);
+    color: var(--mdj-link-color);
+}
+
+.markdown-body .markdown-alert.markdown-alert-important {
+    border-left-color: var(--mdj-syntax-type);
+    color: var(--mdj-syntax-type);
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning {
+    border-left-color: #9a6700;
+    color: #9a6700;
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip {
+    border-left-color: #1a7f37;
+    color: #1a7f37;
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution {
+    border-left-color: #cf222e;
+    color: #d1242f;
+}
 
 /* Task list tweaks */
-.markdown-body .task-list-item { list-style-type: none; }
-.markdown-body .task-list-item-checkbox { margin: 0 .2em .25em -1.4em; vertical-align: middle; }
-.markdown-body .task-list-item+.task-list-item { margin-top: .25rem; }
+.markdown-body .task-list-item {
+	list-style-type: none;
+}
 
-/* Footnotes polishing */
-.markdown-body .footnotes { font-size: 12px; color: var(--mdj-text-secondary-color); border-top: 1px solid var(--mdj-border-color); }
-.markdown-body .footnotes li:target::before { content: ''; position: absolute; top: -0.5rem; right: -0.5rem; bottom: -0.5rem; left: -1.5rem; pointer-events: none; border: 2px solid var(--mdj-link-color); border-radius: 6px; }
+.markdown-body .task-list-item-checkbox {
+	margin: 0 .2em .25em -1.4em;
+	vertical-align: middle;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+	margin-top: .25rem;
+}
+
+/* Footnotes */
+.markdown-body .footnotes {
+    font-size: 0.75em; /* relative to body font-size (≈12px si base=16px) */
+    color: var(--mdj-text-secondary-color);
+    border-top: 1px solid var(--mdj-border-color);
+    margin-top: 1.5rem;
+    padding-top: 0.75rem;
+}
+
+.markdown-body .footnotes ol {
+    margin: 0;
+    padding-left: 1.25em;
+}
+
+.markdown-body .footnotes li {
+    position: relative;
+    margin: 0.4em 0;
+}
+
+.markdown-body .footnotes p {
+    margin: 0.25em 0;
+}
+
+.markdown-body .footnotes li:target::before {
+    content: '';
+    position: absolute;
+    top: -0.4rem;
+    right: -0.4rem;
+    bottom: -0.4rem;
+    left: -1.0rem;
+    pointer-events: none;
+    border: 2px solid var(--mdj-link-color);
+    border-radius: 6px;
+}
+
+/* Accent for form controls (checkbox, radio, etc.) */
+.markdown-body input[type="checkbox"],
+.markdown-body input[type="radio"],
+.markdown-body progress {
+    accent-color: var(--mdj-accent-color);
+}
 
 /* End of optional extras */
