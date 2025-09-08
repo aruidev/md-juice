@@ -14,7 +14,7 @@
  This file intentionally keeps the fast token set small for simplicity.
 =====================================================================
 */
-:root {
+.md-juice {
 	/* ------------------------------------------------------------------ */
 	/* Layer 1: FAST TOKENS (override these for rapid theming)            */
 	/* ------------------------------------------------------------------ */
@@ -78,10 +78,10 @@
 
 
 /* ------------------------------------------------------------------ */
-/* Dark theme (explicit) — use ONE: [data-theme="dark"] or .juice-dark */
+/* Dark theme (explicit) — scoped */
 /* ------------------------------------------------------------------ */
-[data-theme="dark"],
-.juice-dark {
+.md-juice[data-theme="dark"],
+.md-juice.juice-dark {
 	--juice-color-bg: #0d1117;
 	--juice-color-bg-alt: #010409;
 	--juice-color-text: #c9d1d9;
@@ -96,8 +96,9 @@
 }
 
 /* Optional system dark fallback (no explicit theme set) */
+
 @media (prefers-color-scheme: dark) {
-	:root:not([data-theme]):not(.juice-light):not(.juice-dark) {
+	.md-juice:not([data-theme]):not(.juice-light):not(.juice-dark) {
 		--juice-color-bg: #0d1117;
 		--juice-color-bg-alt: #010409;
 		--juice-color-text: #c9d1d9;
@@ -111,8 +112,9 @@
 	}
 }
 
+@layer md-juice {
 /* Base (solo modo claro por defecto) */
-.markdown-body {
+.md-juice .markdown-body {
     color-scheme: light;
 	color: var(--mdj-text-primary-color);
 	background-color: var(--mdj-background-color);
@@ -123,34 +125,34 @@
 }
 
 /* Cuando el contenedor está en dark, forzar esquema oscuro */
-:root[data-theme="dark"] .markdown-body,
-.juice-dark .markdown-body {
+.md-juice[data-theme="dark"] .markdown-body,
+.md-juice.juice-dark .markdown-body {
     color-scheme: dark;
 }
 
 /* Smooth color transitions for theming */
 /* Standard Tailwind CSS transition values */
-.markdown-body,
-.markdown-body * {
+.md-juice .markdown-body,
+.md-juice .markdown-body * {
 	transition-property: color, background, background-color, border-color;
 	transition-duration: var(--mdj-transition, 150ms);
 	transition-timing-function: var(--mdj-transition-timing, cubic-bezier(0.4, 0, 0.2, 1));
 }
 
 /* Optional opt‑out helper (apply to a subtree if needed) */
-.juice-no-transition,
-.juice-no-transition * {
+.md-juice .juice-no-transition,
+.md-juice .juice-no-transition * {
     transition-property: color, background-color, border-color;
     transition-duration: 0ms !important;
 }
 
 /* Headings */
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
+.md-juice .markdown-body h1,
+.md-juice .markdown-body h2,
+.md-juice .markdown-body h3,
+.md-juice .markdown-body h4,
+.md-juice .markdown-body h5,
+.md-juice .markdown-body h6 {
 	margin-top: 1.5rem;
 	margin-bottom: 1rem;
 	font-weight: 600;
@@ -158,125 +160,125 @@
 	color: var(--mdj-text-primary-color);
 }
 
-.markdown-body h1 {
+.md-juice .markdown-body h1 {
 	font-size: 2em;
 	padding-bottom: .3em;
 	border-bottom: 1px solid var(--mdj-border-color);
 }
 
-.markdown-body h2 {
+.md-juice .markdown-body h2 {
 	font-size: 1.5em;
 	padding-bottom: .3em;
 	border-bottom: 1px solid var(--mdj-border-color);
 }
 
-.markdown-body h3 {
+.md-juice .markdown-body h3 {
 	font-size: 1.25em;
 }
 
-.markdown-body h4 {
+.md-juice .markdown-body h4 {
 	font-size: 1em;
 }
 
-.markdown-body h5 {
+.md-juice .markdown-body h5 {
 	font-size: .875em;
 }
 
-.markdown-body h6 {
+.md-juice .markdown-body h6 {
 	font-size: .85em;
 	color: var(--mdj-text-secondary-color);
 }
 
 /* Anchors (show link icon on hover) */
-.markdown-body .anchor {
+.md-juice .markdown-body .anchor {
 	float: left;
 	padding-right: .25rem;
 	margin-left: -20px;
 	line-height: 1;
 }
 
-.markdown-body h1:hover .anchor,
-.markdown-body h2:hover .anchor,
-.markdown-body h3:hover .anchor,
-.markdown-body h4:hover .anchor,
-.markdown-body h5:hover .anchor,
-.markdown-body h6:hover .anchor {
+.md-juice .markdown-body h1:hover .anchor,
+.md-juice .markdown-body h2:hover .anchor,
+.md-juice .markdown-body h3:hover .anchor,
+.md-juice .markdown-body h4:hover .anchor,
+.md-juice .markdown-body h5:hover .anchor,
+.md-juice .markdown-body h6:hover .anchor {
 	text-decoration: none;
 }
 
-.markdown-body .anchor .octicon-link {
+.md-juice .markdown-body .anchor .octicon-link {
 	visibility: hidden;
 	color: var(--mdj-text-primary-color);
 }
 
-.markdown-body h1:hover .anchor .octicon-link,
-.markdown-body h2:hover .anchor .octicon-link,
-.markdown-body h3:hover .anchor .octicon-link {
+.md-juice .markdown-body h1:hover .anchor .octicon-link,
+.md-juice .markdown-body h2:hover .anchor .octicon-link,
+.md-juice .markdown-body h3:hover .anchor .octicon-link {
 	visibility: visible;
 }
 
 /* Text content */
-.markdown-body p {
+.md-juice .markdown-body p {
 	margin: 0 0 1rem 0;
 }
 
-.markdown-body small {
+.md-juice .markdown-body small {
 	font-size: 90%;
 }
 
-.markdown-body mark {
+.md-juice .markdown-body mark {
 	background-color: var(--mdj-mark-bg);
 	color: var(--mdj-text-primary-color);
 }
 
 /* Links */
-.markdown-body a {
+.md-juice .markdown-body a {
 	color: var(--mdj-link-color);
 	text-decoration: none;
 	background-color: transparent;
 }
 
-.markdown-body a:hover {
+.md-juice .markdown-body a:hover {
 	text-decoration: underline;
 }
 
 /* Lists */
-.markdown-body ul,
-.markdown-body ol {
+.md-juice .markdown-body ul,
+.md-juice .markdown-body ol {
 	padding-left: 2em;
 	margin: 0 0 1rem 0;
 }
 
-.markdown-body ul {
+.md-juice .markdown-body ul {
 	list-style: disc outside;
 }
 
-.markdown-body ol {
+.md-juice .markdown-body ol {
 	list-style: decimal outside;
 }
 
-.markdown-body li+li {
+.md-juice .markdown-body li+li {
 	margin-top: .25em;
 }
 
-.markdown-body ul li::marker {
+.md-juice .markdown-body ul li::marker {
 	color: var(--mdj-text-secondary-color);
 }
 
-.markdown-body ol li::marker {
+.md-juice .markdown-body ol li::marker {
 	color: var(--mdj-text-secondary-color);
 }
 
-.markdown-body ul ul li::marker {
+.md-juice .markdown-body ul ul li::marker {
 	color: var(--mdj-text-secondary-color);
 }
 
-.markdown-body ol ol li::marker {
+.md-juice .markdown-body ol ol li::marker {
 	color: var(--mdj-text-secondary-color);
 }
 
 /* Blockquote */
-.markdown-body blockquote {
+.md-juice .markdown-body blockquote {
 	margin: 0 0 1rem 0;
 	padding: 0 1em;
 	color: var(--mdj-text-secondary-color);
@@ -284,7 +286,7 @@
 }
 
 /* Horizontal rule */
-.markdown-body hr {
+.md-juice .markdown-body hr {
 	height: var(--mdj-hr-height);
 	border: 0;
 	background-color: var(--mdj-border-color);
@@ -292,53 +294,53 @@
 }
 
 /* Tables - simplified and responsive */
-.markdown-body table {
+.md-juice .markdown-body table {
 	width: 100%;
 	border-collapse: collapse;
 	margin: 0 0 1rem 0;
 }
 
-.markdown-body th {
+.md-juice .markdown-body th {
 	background-color: var(--mdj-table-th-bg);
 }
 
-.markdown-body th,
-.markdown-body td {
+.md-juice .markdown-body th,
+.md-juice .markdown-body td {
 	padding: 6px 13px;
 	border: 1px solid var(--mdj-border-color);
 }
 
-.markdown-body tr {
+.md-juice .markdown-body tr {
 	background-color: var(--mdj-table-tr-bg);
 }
 
 /* Images */
-.markdown-body img {
+.md-juice .markdown-body img {
 	max-width: 100%;
 	border-style: none;
 }
 
 /* Code and preformatted */
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre,
-.markdown-body samp {
+.md-juice .markdown-body code,
+.md-juice .markdown-body kbd,
+.md-juice .markdown-body pre,
+.md-juice .markdown-body samp {
 	font-family: var(--mdj-monospace);
 	font-size: 0.95em;
 }
 
-.markdown-body pre {
+.md-juice .markdown-body pre {
 	overflow: auto;
 	padding: .75rem;
 	background: var(--mdj-code-bg);
 	border-radius: var(--mdj-radius);
 }
 
-.markdown-body pre code {
+.md-juice .markdown-body pre code {
 	display: block;
 }
 
-.markdown-body code {
+.md-juice .markdown-body code {
 	background: transparent;
 	padding: .15rem .3rem;
 	border-radius: 4px;
@@ -346,7 +348,7 @@
 }
 
 /* Keyboard key */
-.markdown-body kbd {
+.md-juice .markdown-body kbd {
 	display: inline-block;
 	padding: .25rem;
 	font-size: .85em;
@@ -358,30 +360,30 @@
 }
 
 /* Forms and details */
-.markdown-body details {
+.md-juice .markdown-body details {
 	display: block;
 	margin: 0 0 1rem 0;
 }
 
-.markdown-body summary {
+.md-juice .markdown-body summary {
 	cursor: pointer;
 }
 
 /* Accessibility focus */
-.markdown-body a:focus,
-.markdown-body [role=button]:focus,
-.markdown-body input:focus,
-.markdown-body textarea:focus {
+.md-juice .markdown-body a:focus,
+.md-juice .markdown-body [role=button]:focus,
+.md-juice .markdown-body input:focus,
+.md-juice .markdown-body textarea:focus {
 	outline: var(--mdj-focus-outline);
 	outline-offset: -2px;
 }
 
 /* Small utility helpers used by markdown output */
-.markdown-body .absent {
+.md-juice .markdown-body .absent {
 	color: #d1242f;
 }
 
-.markdown-body .emoji {
+.md-juice .markdown-body .emoji {
 	vertical-align: text-top;
 	background-color: transparent;
 }
@@ -389,7 +391,7 @@
 /* ------------------- OPTIONAL EXTRAS (GitHub-like) ------------------- */
 
 /* Permalink icon for headings (uses the same SVG mask approach) */
-.markdown-body .anchor .octicon-link:before {
+.md-juice .markdown-body .anchor .octicon-link:before {
 	width: 16px;
 	height: 16px;
 	content: '';
@@ -399,52 +401,52 @@
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'/%3E%3C/svg%3E");
 }
 
-.markdown-body h1:hover .anchor .octicon-link,
-.markdown-body h2:hover .anchor .octicon-link,
-.markdown-body h3:hover .anchor .octicon-link,
-.markdown-body h4:hover .anchor .octicon-link,
-.markdown-body h5:hover .anchor .octicon-link,
-.markdown-body h6:hover .anchor .octicon-link {
+.md-juice .markdown-body h1:hover .anchor .octicon-link,
+.md-juice .markdown-body h2:hover .anchor .octicon-link,
+.md-juice .markdown-body h3:hover .anchor .octicon-link,
+.md-juice .markdown-body h4:hover .anchor .octicon-link,
+.md-juice .markdown-body h5:hover .anchor .octicon-link,
+.md-juice .markdown-body h6:hover .anchor .octicon-link {
 	visibility: visible;
 }
 
 /* Minimal syntax highlighting classes (map from original .pl-* classes) */
-.markdown-body .pl-c {
+.md-juice .markdown-body .pl-c {
 	color: var(--mdj-syntax-comment);
 }
 
-.markdown-body .pl-k {
+.md-juice .markdown-body .pl-k {
 	color: var(--mdj-syntax-keyword);
 }
 
-.markdown-body .pl-en,
-.markdown-body .pl-e {
+.md-juice .markdown-body .pl-en,
+.md-juice .markdown-body .pl-e {
 	color: var(--mdj-syntax-constant);
 }
 
-.markdown-body .pl-smi,
-.markdown-body .pl-s {
+.md-juice .markdown-body .pl-smi,
+.md-juice .markdown-body .pl-s {
 	color: var(--mdj-syntax-function);
 }
 
-.markdown-body .pl-sr {
+.md-juice .markdown-body .pl-sr {
 	color: var(--mdj-syntax-string);
 }
 
-.markdown-body .pl-v {
+.md-juice .markdown-body .pl-v {
 	color: var(--mdj-syntax-number);
 }
 
-.markdown-body .pl-mh {
+.md-juice .markdown-body .pl-mh {
 	color: var(--mdj-syntax-type);
 }
 
-.markdown-body .pl-mi {
+.md-juice .markdown-body .pl-mi {
 	font-style: italic;
 	color: var(--mdj-text-primary-color);
 }
 
-.markdown-body .pl-md {
+.md-juice .markdown-body .pl-md {
 	background-color: rgba(255, 235, 233, 0.8);
 	color: #82071e;
 }
@@ -455,60 +457,60 @@
        <p class="markdown-alert-title">...</p>
        <p>Body...</p>
      </blockquote> */
-.markdown-body .markdown-alert {
+.md-juice .markdown-body .markdown-alert {
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     color: inherit;
     border-left: .25em solid var(--mdj-border-color);
 }
 
-.markdown-body .markdown-alert .markdown-alert-title {
+.md-juice .markdown-body .markdown-alert .markdown-alert-title {
     display: flex;
     align-items: center;
     font-weight: 500;
 }
 
-.markdown-body .markdown-alert.markdown-alert-note {
+.md-juice .markdown-body .markdown-alert.markdown-alert-note {
     border-left-color: var(--mdj-link-color);
     color: var(--mdj-link-color);
 }
 
-.markdown-body .markdown-alert.markdown-alert-important {
+.md-juice .markdown-body .markdown-alert.markdown-alert-important {
     border-left-color: var(--mdj-syntax-type);
     color: var(--mdj-syntax-type);
 }
 
-.markdown-body .markdown-alert.markdown-alert-warning {
+.md-juice .markdown-body .markdown-alert.markdown-alert-warning {
     border-left-color: #9a6700;
     color: #9a6700;
 }
 
-.markdown-body .markdown-alert.markdown-alert-tip {
+.md-juice .markdown-body .markdown-alert.markdown-alert-tip {
     border-left-color: #1a7f37;
     color: #1a7f37;
 }
 
-.markdown-body .markdown-alert.markdown-alert-caution {
+.md-juice .markdown-body .markdown-alert.markdown-alert-caution {
     border-left-color: #cf222e;
     color: #d1242f;
 }
 
 /* Task list tweaks */
-.markdown-body .task-list-item {
+.md-juice .markdown-body .task-list-item {
 	list-style-type: none;
 }
 
-.markdown-body .task-list-item-checkbox {
+.md-juice .markdown-body .task-list-item-checkbox {
 	margin: 0 .2em .25em -1.4em;
 	vertical-align: middle;
 }
 
-.markdown-body .task-list-item+.task-list-item {
+.md-juice .markdown-body .task-list-item+.task-list-item {
 	margin-top: .25rem;
 }
 
 /* Footnotes */
-.markdown-body .footnotes {
+.md-juice .markdown-body .footnotes {
     font-size: 0.75em; /* relative to body font-size (≈12px si base=16px) */
     color: var(--mdj-text-secondary-color);
     border-top: 1px solid var(--mdj-border-color);
@@ -516,21 +518,21 @@
     padding-top: 0.75rem;
 }
 
-.markdown-body .footnotes ol {
+.md-juice .markdown-body .footnotes ol {
     margin: 0;
     padding-left: 1.25em;
 }
 
-.markdown-body .footnotes li {
+.md-juice .markdown-body .footnotes li {
     position: relative;
     margin: 0.4em 0;
 }
 
-.markdown-body .footnotes p {
+.md-juice .markdown-body .footnotes p {
     margin: 0.25em 0;
 }
 
-.markdown-body .footnotes li:target::before {
+.md-juice .markdown-body .footnotes li:target::before {
     content: '';
     position: absolute;
     top: -0.4rem;
@@ -543,10 +545,12 @@
 }
 
 /* Accent for form controls (checkbox, radio, etc.) */
-.markdown-body input[type="checkbox"],
-.markdown-body input[type="radio"],
-.markdown-body progress {
+.md-juice .markdown-body input[type="checkbox"],
+.md-juice .markdown-body input[type="radio"],
+.md-juice .markdown-body progress {
     accent-color: var(--mdj-accent-color);
 }
+
+} /* end @layer md-juice */
 
 /* End of optional extras */

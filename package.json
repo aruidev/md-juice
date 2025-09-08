@@ -1,15 +1,17 @@
 {
   "name": "@aruidev/md-juice",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "Lightweight, tokenized CSS stylesheet for styling Markdown HTML output",
-  "main": "md-juice.css",
+  "main": "index.cjs",
+  "module": "index.js",
   "style": "md-juice.css",
   "unpkg": "md-juice.css",
   "files": [
     "md-juice.css",
+    "index.js",
+    "index.cjs",
     "README.md",
-    "demo.html",
-    "github-md-styles.css"
+    "demo.html"
   ],
   "keywords": [
     "markdown",
@@ -33,6 +35,18 @@
     "test": "echo \"No tests\" && exit 0",
     "prepublishOnly": "node -e \"console.log('Ensure CSS is built if needed')\""
   },
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.cjs",
+      "style": "./md-juice.css",
+      "default": "./index.js"
+    },
+    "./md-juice.css": "./md-juice.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
   "publishConfig": {
     "access": "public"
   },

@@ -9,7 +9,7 @@
   </tr>
 </table>
 
-**md-juice** is a tiny, token‑driven CSS theme for rendered Markdown. Drop it in, wrap output with `.markdown-body`, override a few variables—done.
+**md-juice** is a tiny, token‑driven CSS theme for rendered Markdown. Drop it in, wrap output with a lightweight scope `.md-juice` + `.markdown-body`, override a few variables—done.
 
 Framework agnostic — it can be used in any environment or setup. Compatible with popular Markdown renderers (ngx-markdown, marked, markdown-it, React Markdown) and works seamlessly within modern frameworks (React, Angular, Astro, plain HTML, etc.).
 
@@ -30,20 +30,45 @@ npm install @aruidev/md-juice
 
 ## Basic usage
 
+Recommended (scoped) HTML:
+
 ```html
-<link rel="stylesheet" href="/path/md-juice.css">
-<article class="markdown-body">
-  <!-- rendered markdown here -->
-</article>
+<!-- Import via bundler (JS) or link tag (CDN/local) -->
+<div class="md-juice">
+  <article class="markdown-body">
+    <!-- rendered markdown here -->
+  </article>
+</div>
 ```
 
-Dark mode toggle (minimal):
-
+Import options:
 ```js
-const r = document.documentElement;
-r.setAttribute('data-theme','dark'); // force dark
-r.setAttribute('data-theme','light'); // force light
-r.removeAttribute('data-theme');     // allow system auto (if block enabled)
+// ESM (Vite, Next, Astro, etc.)
+import '@aruidev/md-juice';
+// or direct CSS entry if your bundler supports it
+import '@aruidev/md-juice/md-juice.css';
+```
+CDN / manual link:
+```html
+<link rel="stylesheet" href="/node_modules/@aruidev/md-juice/md-juice.css">
+```
+
+Multiple independent instances (each can theme differently):
+```html
+<div class="md-juice">
+  <article class="markdown-body"> ... </article>
+</div>
+<div class="md-juice" data-theme="dark">
+  <article class="markdown-body"> ... </article>
+</div>
+```
+
+Dark mode per container (no need to touch `<html>`):
+```js
+const scope = document.querySelector('.md-juice');
+scope.setAttribute('data-theme','dark');   // force dark
+scope.setAttribute('data-theme','light');  // force light
+scope.removeAttribute('data-theme');       // fall back to prefers-color-scheme block
 ```
 
 ## Layer 1 – Fast tokens (`--juice-*`)
@@ -61,18 +86,25 @@ Set these to theme quickly. All granular tokens derive from them unless you over
 | `--juice-color-accent` | =interactive | =interactive | Focus / accent alias |
 | `--juice-color-surface-code` | `#f6f8fa` | `#0f1720` | Code blocks & inline code |
 
-Example quick theme:
+Example quick theme (all instances):
 
 ```css
-:root {
+/* After importing md-juice.css */
+.md-juice { /* global override for all markdown scopes */
   --juice-color-bg: #ffffff;
   --juice-color-interactive: #4f46e5;
 }
-/* Dark scope */
-[data-theme="dark"] {
+.md-juice[data-theme="dark"] {
   --juice-color-bg: #0d1117;
   --juice-color-interactive: #818cf8;
 }
+```
+
+Instance‑only override:
+```html
+<div class="md-juice" style="--juice-color-bg:#fff7e6;--juice-color-interactive:#dc2626">
+  <article class="markdown-body"> ... </article>
+</div>
 ```
 
 ### Typography & layout primitives
@@ -90,7 +122,7 @@ These fast tokens drive base typography & spacing radii; granular `--mdj-*` coun
 Quick tweak example:
 
 ```css
-:root {
+.md-juice {
   --juice-font-family-base: system-ui, sans-serif;
   --juice-font-size-base: 15px; /* slightly denser */
   --juice-radius-base: 4px;
@@ -134,29 +166,34 @@ Two approaches:
 * Explicit: `<html data-theme="dark">` or add `.juice-dark` to a wrapper.
 * Auto (optional block in CSS): remove the attribute to let `prefers-color-scheme: dark` apply.
 
-Granular overrides for dark can be added inside `[data-theme="dark"] { ... }` if you need a divergence (e.g. custom `--mdj-code-bg`).
+Granular overrides for dark should target the scoped container:
+```css
+.md-juice[data-theme="dark"] { --mdj-code-bg:#0f1422; }
+```
 
 ## Transitions
 
-By default md-juice uses Tailwind's default transition values (150ms + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind. All color/background/border transitions inside `.markdown-body` inherit that.
+By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind. All color/background/border transitions inside `.markdown-body` inherit that.
 
 If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet:
 
-```css
-/* Unify duration with the rest of the app */
-:root { --juice-transition: 200ms; }
-
-/* Or change only easing globally (markdown inherits) */
-:root { --juice-transition-timing: ease-in-out; }
-```
-
 > If your app's global transitions (e.g. body, layout, buttons) use a different duration or easing than the rendered markdown, either set --juice-transition and --juice-transition-timing to match your app. 
 
-### Disable transitions:
 ```css
-:root { --juice-transition: 0ms; }
+/* Unify duration with the rest of the app (all instances) */
+.md-juice { --juice-transition: 200ms; }
+
+/* Or change only easing globally (markdown inherits) */
+.md-juice { --juice-transition-timing: ease-in-out; }
 ```
+
+### Disable transitions:
+
 > You can also disable transitions completely.
+
+```css
+.md-juice { --juice-transition: 0ms; }
+```
 
 ## Alerts
 
@@ -185,8 +222,8 @@ Font size scales (0.75em). Add the wrapper if your generator omits it.
 
 ## Tailwind compatibility
 
-* Works side by side; md-juice only styles descendants of `.markdown-body`.
-* Load order: include **after** Tailwind if you want md-juice to win on Markdown semantics.
+* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
+* Load order: include **after** Tailwind if you want md-juice to win on Markdown semantics (or use cascade layers to control ordering).
 
 ## Syntax highlighting
 
@@ -201,11 +238,11 @@ You can still override `--mdj-syntax-*` for custom hues.
 
 | Need | Do this |
 |------|---------|
-| Faster theme | Override `--juice-color-*` only |
-| Precise tweak | Override a specific `--mdj-*` |
-| Disable animation | `--mdj-transition:0ms` |
-| Custom code bg only | `--mdj-code-bg: #faf7ff` |
-| Dark toggle JS | `document.documentElement.setAttribute('data-theme','dark')` |
+| Faster theme | `.md-juice { --juice-color-* overrides }` |
+| Precise tweak | `.md-juice { --mdj-code-bg:#faf7ff }` (or inline style on one instance) |
+| Disable animation | `.md-juice { --mdj-transition:0ms }` |
+| Custom code bg only | `.md-juice { --mdj-code-bg: #faf7ff }` |
+| Dark toggle JS | `scope.setAttribute('data-theme','dark')` (where scope = `.md-juice`) |
 
 ---
 Enjoy rapid theming. PRs welcome.

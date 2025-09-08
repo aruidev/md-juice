@@ -5,13 +5,15 @@
 <title>md-juice demo</title>
 <link rel="stylesheet" href="./md-juice.css">
 <!--
-md-juice quick demo
-Layer 1 (fast): override a few --juice-color-* tokens (light + dark)
-Layer 2 (granular): optionally override --mdj-* for fine tuning (none needed here)
-Toggle: sets data-theme="dark" / "light"
+md-juice quick demo (scoped version >=0.3.x)
+Tokens now live on the .md-juice container so multiple instances can coexist.
+Layer 1 (fast): override --juice-color-* on each .md-juice (light + dark)
+Layer 2 (granular): optionally override --mdj-* only when needed
+Toggle: sets data-theme="dark" / "light" on the .md-juice scope
 -->
 <style>
-:root {
+/* Demo: single scope. Duplicate the .md-juice block for multiple differently themed instances */
+.md-juice {
   /* Fast tokens (light) */
   --juice-color-bg: #ffffff;
   --juice-color-bg-alt: #f6f8fa;
@@ -21,8 +23,8 @@ Toggle: sets data-theme="dark" / "light"
   --juice-color-interactive: #4f46e5; /* accent / links */
 }
 
-/* Fast tokens (dark) */
-:root[data-theme="dark"] {
+/* Fast tokens (dark) for THIS scope */
+.md-juice[data-theme="dark"] {
   --juice-color-bg: #0d1117;
   --juice-color-bg-alt: #10151c;
   --juice-color-text: #c9d1d9;
@@ -34,12 +36,12 @@ Toggle: sets data-theme="dark" / "light"
 
 body {
   margin: 0;
-  font-family: var(--mdj-font-family);
-  background: var(--mdj-background-color);
-  color: var(--mdj-text-primary-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #f0f2f5; /* neutral page bg distinct from scope */
+  color: #111;
 }
 
-/* Default Tailwind Transitions */
+/* Page transitions (the themed markdown itself has its own transitions) */
 html, body {
   transition-property: color, background-color, border-color;
   transition-duration: 150ms;
@@ -54,15 +56,15 @@ html, body {
 
 #theme-toggle {
   padding: .45rem .9rem;
-  border: 1px solid var(--mdj-border-color);
-  background: var(--mdj-background-secondary-color);
-  color: var(--mdj-text-primary-color);
+  border: 1px solid #d1d9e0;
+  background: #fff;
+  color: #1f2328;
   border-radius: 6px;
   cursor: pointer;
   font: inherit;
-  transition: background-color var(--mdj-transition), color var(--mdj-transition), border-color var(--mdj-transition);
+  transition: background-color 150ms, color 150ms, border-color 150ms;
 }
-#theme-toggle:hover { background: var(--mdj-background-color); }
+#theme-toggle:hover { background: #f6f8fa; }
 
 footer {
   margin-top: 2rem;
@@ -70,12 +72,13 @@ footer {
   justify-content: flex-start;
   gap: .75rem;
   align-items: center;
-  color: var(--mdj-text-secondary-color);
+  color: #59636e;
 }
 </style>
 </head>
 <body>
 <div class="wrapper">
+  <div class="md-juice" id="md-scope">
   <article class="markdown-body">
     <h1>md-juice demo</h1>
 
@@ -113,6 +116,7 @@ console.log(greet('md-juice'));</code></pre>
         </ol>
       </div>
   </article>
+  </div>
 
   <footer>
     <button id="theme-toggle" type="button">Toggle dark</button>
@@ -121,21 +125,22 @@ console.log(greet('md-juice'));</code></pre>
 </div>
 
 <script>
-const root = document.documentElement;
+// Toggle theme per md-juice scope
+const scope = document.getElementById('md-scope');
 const btn = document.getElementById('theme-toggle');
 const label = document.getElementById('mode-label');
 
 function setMode(mode) {
-  root.setAttribute('data-theme', mode);
+  scope.setAttribute('data-theme', mode);
   label.textContent = mode;
 }
 
 btn.addEventListener('click', () => {
-  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  const next = scope.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   setMode(next);
 });
 
-if(!root.hasAttribute('data-theme')) setMode('light');
+if(!scope.hasAttribute('data-theme')) setMode('light');
 </script>
 </body>
 </html>
