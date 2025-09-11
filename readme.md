@@ -22,6 +22,12 @@ Framework agnostic — it can be used in any environment or setup. Compatible wi
 * Clean GitHub‑like styles: headings, tables, code, alerts, footnotes, tasks.
 * Zero JS required (JS only for toggling if you want a switch).
 
+## Getting started
+
+> Read the linked tutorial for a clear, step‑by‑step integration guide and practical examples.
+
+- [Getting Started with md-juice in Angular ↗](https://aruidev.com/posts/getting-started-md-juice-angular)
+
 ## Installation
 
 ```bash
