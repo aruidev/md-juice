@@ -2,4 +2,4 @@
 require('./md-juice.css');
 
 module.exports = 'md-juice';
-module.exports.mdJuiceVersion = '0.3.1';
+module.exports.mdJuiceVersion = '0.3.2';

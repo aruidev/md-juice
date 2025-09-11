@@ -294,11 +294,22 @@
 	margin: 1.5rem 0;
 }
 
-/* Tables - simplified and responsive */
+/* Inner table wrapper to prevent overflow */
+.md-juice .markdown-body {
+  overflow-x: hidden;
+}
+
+/* Inner table wrapper to enable horizontal scrolling */
 .md-juice .markdown-body table {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 0 0 1rem 0;
+  display: block;              	
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  margin: 0 0 1rem 0;
+  overflow: auto;              
+  -webkit-overflow-scrolling: touch;
+  table-layout: fixed;          
 }
 
 .md-juice .markdown-body th {
