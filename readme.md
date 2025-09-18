@@ -2,10 +2,10 @@
 
 <table>
   <tr>
-    <td><img width="1185" height="1273" alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" width=400 />
+    <td><img width="1185" height="1273" alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" alt="md-juice demo (light)" width=400 />
 
 </td>
-    <td><img width="1206" height="1265" alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" width=400 />
+    <td><img width="1206" height="1265" alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" alt="md-juice demo (dark)" width=400 />
 
 </td>
   </tr>
