@@ -19,7 +19,7 @@
 	/* Layer 1: FAST TOKENS (override these for rapid theming)            */
 	/* ------------------------------------------------------------------ */
 	--juice-color-bg: #ffffff;
-	--juice-color-bg-alt: #f6f8fa;
+	--juice-color-bg-alt: #F4F4F4;
 	/* secondary surface */
 	--juice-color-text: #1f2328;
 	--juice-color-text-secondary: #59636e;
@@ -52,8 +52,9 @@
 	--mdj-kbd-bg: var(--juice-color-surface-code);
 	--mdj-kbd-border: var(--juice-color-border);
 	--mdj-mark-bg: var(--juice-color-bg-alt);
-	--mdj-table-th-bg: var(--juice-color-bg-alt);
+	--mdj-table-th-bg: var(--juice-color-bg);
 	--mdj-table-tr-bg: var(--juice-color-bg);
+	--mdj-table-tr2-bg: var(--juice-color-bg-alt);
 
 	--mdj-font-family: var(--juice-font-family-base);
 	--mdj-monospace: var(--juice-font-family-monospace);
@@ -84,7 +85,7 @@
 .md-juice[data-theme="dark"],
 .md-juice.juice-dark {
 	--juice-color-bg: #0d1117;
-	--juice-color-bg-alt: #010409;
+	--juice-color-bg-alt: #151B23;
 	--juice-color-text: #c9d1d9;
 	--juice-color-text-secondary: #8b949e;
 	--juice-color-border: rgba(110, 118, 129, 0.40);
@@ -324,6 +325,9 @@
 
 .md-juice .markdown-body tr {
 	background-color: var(--mdj-table-tr-bg);
+}
+.markdown-body tr:nth-child(2n) { 
+	background-color: var(--mdj-table-tr2-bg); 
 }
 
 /* Images */

@@ -4,29 +4,34 @@
 <meta charset="utf-8">
 <title>md-juice demo</title>
 <link rel="stylesheet" href="./md-juice.css">
-<!--
-md-juice quick demo (scoped version >=0.3.x)
-Tokens now live on the .md-juice container so multiple instances can coexist.
-Layer 1 (fast): override --juice-color-* on each .md-juice (light + dark)
-Layer 2 (granular): optionally override --mdj-* only when needed
-Toggle: sets data-theme="dark" / "light" on the .md-juice scope
--->
+
 <style>
-/* Demo: single scope. Duplicate the .md-juice block for multiple differently themed instances */
-.md-juice {
-  /* Fast tokens (light) */
+body {
   --juice-color-bg: #ffffff;
-  --juice-color-bg-alt: #f6f8fa;
+  --juice-color-bg-alt: #F4F4F4;
   --juice-color-text: #1f2328;
   --juice-color-text-secondary: #59636e;
   --juice-color-border: #d1d9e0;
-  --juice-color-interactive: #4f46e5; /* accent / links */
+  --juice-color-interactive: #4f46e5;
+
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--juice-color-bg);
+  color: var(--juice-color-text);
 }
 
-/* Fast tokens (dark) for THIS scope */
-.md-juice[data-theme="dark"] {
+.md-juice {
+  --juice-color-bg: #ffffff;
+  --juice-color-bg-alt: #F4F4F4;
+  --juice-color-text: #1f2328;
+  --juice-color-text-secondary: #59636e;
+  --juice-color-border: #d1d9e0;
+  --juice-color-interactive: #4f46e5;
+}
+
+:where(body, .md-juice)[data-theme="dark"] {
   --juice-color-bg: #0d1117;
-  --juice-color-bg-alt: #10151c;
+  --juice-color-bg-alt: #151B23;
   --juice-color-text: #c9d1d9;
   --juice-color-text-secondary: #8b949e;
   --juice-color-border: rgba(110,118,129,0.40);
@@ -34,14 +39,6 @@ Toggle: sets data-theme="dark" / "light" on the .md-juice scope
   --juice-color-surface-code: #0f1720;
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: #f0f2f5; /* neutral page bg distinct from scope */
-  color: #111;
-}
-
-/* Page transitions (the themed markdown itself has its own transitions) */
 html, body {
   transition-property: color, background-color, border-color;
   transition-duration: 150ms;
@@ -97,10 +94,32 @@ console.log(greet('md-juice'));</code></pre>
       <p>Use CSS variables to theme colors.</p>
     </blockquote>
 
-    <blockquote class="markdown-alert markdown-alert-warning">
-      <p class="markdown-alert-title">Warning</p>
-      <p>Ensure you use BOTH classes: <code>markdown-alert</code> + variant.</p>
-    </blockquote>
+    <table>
+      <thead>
+        <tr>
+          <th>Header 1</th>
+          <th>Header 2</th>
+          <th>Header 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cell 1</td>
+          <td>Cell 2</td>
+          <td>Cell 3</td>
+        </tr>
+        <tr>
+          <td>Cell 4</td>
+          <td>Cell 5</td>
+          <td>Cell 6</td>
+        </tr>
+        <tr>
+          <td>Cell 7</td>
+          <td>Cell 8</td>
+          <td>Cell 9</td>
+        </tr>
+      </tbody>
+    </table>
 
     <h2>Task list</h2>
     <ul class="contains-task-list">
@@ -125,22 +144,22 @@ console.log(greet('md-juice'));</code></pre>
 </div>
 
 <script>
-// Toggle theme per md-juice scope
-const scope = document.getElementById('md-scope');
 const btn = document.getElementById('theme-toggle');
 const label = document.getElementById('mode-label');
+const scope = document.getElementById('md-scope');
 
 function setMode(mode) {
-  scope.setAttribute('data-theme', mode);
+  document.body.setAttribute('data-theme', mode);
+  if (scope) scope.setAttribute('data-theme', mode);
   label.textContent = mode;
 }
 
 btn.addEventListener('click', () => {
-  const next = scope.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   setMode(next);
 });
 
-if(!scope.hasAttribute('data-theme')) setMode('light');
+if (!document.body.hasAttribute('data-theme')) setMode('light');
 </script>
 </body>
 </html>
