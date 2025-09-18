@@ -2,9 +2,11 @@
 
 <table>
   <tr>
-    <td><img width="939" height="1031" alt="md-juice (light)" src="https://github.com/user-attachments/assets/af3ec429-9684-4b71-aebb-708bb8b2fdf4" width=400/>
+    <td><img width="1185" height="1273" alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" width=400 />
+
 </td>
-    <td><img width="944" height="1038" alt="Captura de pantalla 2025-09-08 160931" src="https://github.com/user-attachments/assets/de6e91cd-69b5-403c-a46f-ca026276624b" width=400/>
+    <td><img width="1206" height="1265" alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" width=400 />
+
 </td>
   </tr>
 </table>
