@@ -1,98 +1,122 @@
 # md-juice
 
+**A drop-in CSS theme for rendered Markdown HTML**.  
+Works with any framework, any renderer, or plain HTML. Two layers of customization let you theme quickly or fine-tune elements. 
+
 <table>
   <tr>
-    <td><img width="1185" height="1273" alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" alt="md-juice demo (light)" width=400 />
+    <td><img alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" alt="md-juice demo (light)" width=400 />
 
 </td>
-    <td><img width="1206" height="1265" alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" alt="md-juice demo (dark)" width=400 />
+    <td><img alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" alt="md-juice demo (dark)" width=400 />
 
 </td>
   </tr>
 </table>
 
-**md-juice** is a tiny, token‑driven CSS theme for rendered Markdown. Drop it in, wrap output with a lightweight scope `.md-juice` + `.markdown-body`, override a few variables—done.
+## Why md-juice?
 
-Framework agnostic — it can be used in any environment or setup. Compatible with popular Markdown renderers (ngx-markdown, marked, markdown-it, React Markdown) and works seamlessly within modern frameworks (React, Angular, Astro, plain HTML, etc.).
+Quickly style Markdown HTML with **conflict-free, framework-agnostic CSS**. 
 
-## Features
+**Use cases:** Docs, blogs, wikis, notes apps, README previews, static sites  
+**Key benefits:** Fast theming, framework-agnostic, conflict-free styling 
 
-* Fast theming layer (`--juice-*`) – a small set of tokens flip the whole look.
-* Fine control layer (`--mdj-*`) – override only what you need.
-* Light / dark via attribute or class (`[data-theme="dark"]` or `.juice-dark`).
-* Optional system auto dark (prefers-color-scheme) fallback included.
-* Clean GitHub‑like styles: headings, tables, code, alerts, footnotes, tasks.
-* Zero JS required (JS only for toggling if you want a switch).
+### Features: 
+- Token-driven theming with two customization layers
+- Built-in light/dark theme support
+- Zero JavaScript dependency
+- GitHub-like default styling 
 
-## Getting started
+## Getting Started
 
-> Read the linked tutorial for a clear, step‑by‑step integration guide and practical examples.
+### Installation
 
-- [Getting Started with md-juice in Angular ↗](https://aruidev.com/posts/getting-started-md-juice-angular)
-
-## Installation
+To get started, install md-juice:  
 
 ```bash
 npm install @aruidev/md-juice
 ```
 
-## Basic usage
+### Basic setup
 
-Recommended (scoped) HTML:
+#### Import the Styles  
+Import the md-juice CSS to your global styles by updating the global styles.css file. This ensures the styles are available application-wide without conflicts.
 
-```html
-<!-- Import via bundler (JS) or link tag (CDN/local) -->
-<div class="md-juice">
-  <article class="markdown-body">
-    <!-- rendered markdown here -->
-  </article>
-</div>
+```css
+@import '@aruidev/md-juice';
 ```
 
-Import options:
-```js
-// ESM (Vite, Next, Astro, etc.)
-import '@aruidev/md-juice';
-// or direct CSS entry if your bundler supports it
-import '@aruidev/md-juice/md-juice.css';
-```
-CDN / manual link:
-```html
-<link rel="stylesheet" href="/node_modules/@aruidev/md-juice/md-juice.css">
-```
+### Basic usage
 
-Multiple independent instances (each can theme differently):
-```html
-<div class="md-juice">
-  <article class="markdown-body"> ... </article>
-</div>
-<div class="md-juice" data-theme="dark">
-  <article class="markdown-body"> ... </article>
-</div>
-```
+#### Quick example  
+These high-level tokens control the overall look and feel:
 
-Dark mode per container (no need to touch `<html>`):
-```js
-const scope = document.querySelector('.md-juice');
-scope.setAttribute('data-theme','dark');   // force dark
-scope.setAttribute('data-theme','light');  // force light
-scope.removeAttribute('data-theme');       // fall back to prefers-color-scheme block
-```
-
-CSS Customization:
 ```css
 .md-juice {
-  --juice-color-bg: (var(--background-color), white);
-}
-
-.md-juice[data-theme='dark'] {
-  --juice-color-bg: (var(--background-color), black);
+  --juice-color-bg: #fefefe;
+  --juice-color-text: #2d2a3e;
 }
 ```
 
-## Layer 1 – Fast tokens (`--juice-*`)
+### Dark Mode Support  
+Add dark mode variants in the same CSS file:  
 
-Set these to theme quickly. All granular tokens derive from them unless you override `--mdj-*` directly.
+```css
+.md-juice[data-theme="dark"] {
+  --juice-color-bg: #1a1625;
+  --juice-color-text: #e4e2f0;
+}
+```  
+
+### Transitions
+
+By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind.
+
+If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet.
+
+Set `--juice-transition` and `--juice-transition-timing` to match your app:
+
+```css
+.md-juice { --juice-transition: 200ms; }
+.md-juice { --juice-transition-timing: ease-in-out; }
+```
+
+#### Disable transitions:
+
+You can also disable transitions completely:
+
+```css
+.md-juice { --juice-transition: 0ms; }
+```
+
+#### Tailwind compatibility
+
+* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
+* Load order: include **after** Tailwind if you want md-juice to win on Markdown.
+
+#### Syntax highlighting
+
+md-juice ships only minimal color tokens. Use a highlighter for full language scopes.  
+You can still override `--mdj-syntax-*` for custom hues.
+
+### FAQ quick answers
+
+| Need | Do this |
+|------|---------|
+| Faster theme | `.md-juice { --juice-color-* overrides }` |
+| Precise tweak | `.md-juice { --mdj-code-bg:#faf7ff }` (or inline style on one instance) |
+| Disable animation | `.md-juice { --mdj-transition:0ms }` |
+| Custom code bg only | `.md-juice { --mdj-code-bg: #faf7ff }` |
+| Dark toggle JS | `scope.setAttribute('data-theme','dark')` (where scope = `.md-juice`) |
+
+<br />
+
+## CSS design tokens
+
+### Layer 1 – Fast tokens (`--juice-*`)
+
+These high-level tokens control the overall look and feel.  
+Set these to theme quickly.
 
 | Token | Light default | Dark default | Role |
 |-------|---------------|--------------|------|
@@ -102,33 +126,12 @@ Set these to theme quickly. All granular tokens derive from them unless you over
 | `--juice-color-text-secondary` | `#59636e` | `#8b949e` | Muted text |
 | `--juice-color-border` | `#d1d9e0` | `rgba(110,118,129,0.40)` | Borders / rules |
 | `--juice-color-interactive` | `#0969da` | `#58a6ff` | Links & accent base |
-| `--juice-color-accent` | =interactive | =interactive | Focus / accent alias |
-| `--juice-color-surface-code` | `#f6f8fa` | `#0f1720` | Code blocks & inline code |
-
-Example quick theme (all instances):
-
-```css
-/* After importing md-juice.css */
-.md-juice { /* global override for all markdown scopes */
-  --juice-color-bg: #ffffff;
-  --juice-color-interactive: #4f46e5;
-}
-.md-juice[data-theme="dark"] {
-  --juice-color-bg: #0d1117;
-  --juice-color-interactive: #818cf8;
-}
-```
-
-Instance‑only override:
-```html
-<div class="md-juice" style="--juice-color-bg:#fff7e6;--juice-color-interactive:#dc2626">
-  <article class="markdown-body"> ... </article>
-</div>
-```
+| `--juice-color-accent` | `var(--juice-color-interactive)` | `var(--juice-color-interactive)` | Focus / accent alias |
+| `--juice-color-surface-code` | `var(--juice-color-bg-alt)` | `var(--juice-color-bg-alt)` | Code blocks & inline code |
 
 ### Typography & layout primitives
 
-These fast tokens drive base typography & spacing radii; granular `--mdj-*` counterparts reference them unless you override the granular ones directly.
+These fast tokens drive base typography & spacing.
 
 | Token | Maps to granular | Purpose |
 |-------|------------------|---------|
@@ -139,20 +142,11 @@ These fast tokens drive base typography & spacing radii; granular `--mdj-*` coun
 | `--juice-radius-base` | `--mdj-radius` | Shared corner radius (code, kbd, etc.) |
 | `--juice-transition` | `--mdj-transition` | Theme transition duration |
 
-Quick tweak example:
+---
 
-```css
-.md-juice {
-  --juice-font-family-base: system-ui, sans-serif;
-  --juice-font-size-base: 15px; /* slightly denser */
-  --juice-radius-base: 4px;
-  --juice-transition: 150ms; /* Default Tailwind transitions duration */
-}
-```
+### Layer 2 – Granular tokens (`--mdj-*`)
 
-## Layer 2 – Granular tokens (`--mdj-*`)
-
-Override only when a specific surface must differ from the fast mapping.
+Override **only** when a specific surface must differ from the fast mapping. 
 
 | Token | Default (maps from fast layer) | Description |
 |-------|--------------------------------|-------------|
@@ -180,89 +174,6 @@ Override only when a specific surface must differ from the fast mapping.
 | `--mdj-transition` | `150ms` | Theme transition speed |
 | `--mdj-syntax-*` | fixed colors | Minimal syntax hues |
 
-## Dark mode
-
-Two approaches:
-* Explicit: `<html data-theme="dark">` or add `.juice-dark` to a wrapper.
-* Auto (optional block in CSS): remove the attribute to let `prefers-color-scheme: dark` apply.
-
-Granular overrides for dark should target the scoped container:
-```css
-.md-juice[data-theme="dark"] { --mdj-code-bg:#0f1422; }
-```
-
-## Transitions
-
-By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind. All color/background/border transitions inside `.markdown-body` inherit that.
-
-If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet:
-
-> If your app's global transitions (e.g. body, layout, buttons) use a different duration or easing than the rendered markdown, either set --juice-transition and --juice-transition-timing to match your app. 
-
-```css
-/* Unify duration with the rest of the app (all instances) */
-.md-juice { --juice-transition: 200ms; }
-
-/* Or change only easing globally (markdown inherits) */
-.md-juice { --juice-transition-timing: ease-in-out; }
-```
-
-### Disable transitions:
-
-> You can also disable transitions completely.
-
-```css
-.md-juice { --juice-transition: 0ms; }
-```
-
-## Alerts
-
-Use TWO classes: base + variant.
-
-```html
-<blockquote class="markdown-alert markdown-alert-warning">
-  <p class="markdown-alert-title">Warning</p>
-  <p>Something notable.</p>
-</blockquote>
-```
-Variants: `note`, `important`, `warning`, `tip`, `caution`.
-
-## Footnotes
-
-Renderer should wrap them:
-
-```html
-<div class="footnotes">
-  <ol>
-    <li id="fn1"><p>Small footnote text…</p></li>
-  </ol>
-</div>
-```
-Font size scales (0.75em). Add the wrapper if your generator omits it.
-
-## Tailwind compatibility
-
-* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
-* Load order: include **after** Tailwind if you want md-juice to win on Markdown semantics (or use cascade layers to control ordering).
-
-## Syntax highlighting
-
-md-juice ships only minimal color tokens (`.pl-*`). Use a highlighter for full language scopes:
-
-* Prism.js
-* Highlight.js
-
-You can still override `--mdj-syntax-*` for custom hues.
-
-## FAQ quick answers
-
-| Need | Do this |
-|------|---------|
-| Faster theme | `.md-juice { --juice-color-* overrides }` |
-| Precise tweak | `.md-juice { --mdj-code-bg:#faf7ff }` (or inline style on one instance) |
-| Disable animation | `.md-juice { --mdj-transition:0ms }` |
-| Custom code bg only | `.md-juice { --mdj-code-bg: #faf7ff }` |
-| Dark toggle JS | `scope.setAttribute('data-theme','dark')` (where scope = `.md-juice`) |
 
 ---
 Enjoy rapid theming. PRs welcome.
