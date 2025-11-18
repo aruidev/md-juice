@@ -14,6 +14,17 @@ Works with any framework, any renderer, or plain HTML. Two layers of customizati
   </tr>
 </table>
 
+## Table of Contents
+
+- [Why MD-Juice?](#why-md-juice)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Theming (CSS Variables)](#theming)
+- [Transitions](#transitions)
+- [Tailwind Compatibility](#tailwind-compatibility)
+- [Syntax Highlighting](#syntax-highlighting)
+
+
 ## Why md-juice?
 
 Quickly style Markdown HTML with **conflict-free, framework-agnostic CSS**. 
@@ -49,6 +60,7 @@ Import the md-juice CSS to your global styles by updating the global styles.css 
 ### Basic usage
 
 #### Quick example  
+
 These high-level tokens control the overall look and feel:
 
 ```css
@@ -68,50 +80,7 @@ Add dark mode variants in the same CSS file:
 }
 ```  
 
-### Transitions
-
-By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind.
-
-If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet.
-
-Set `--juice-transition` and `--juice-transition-timing` to match your app:
-
-```css
-.md-juice { --juice-transition: 200ms; }
-.md-juice { --juice-transition-timing: ease-in-out; }
-```
-
-#### Disable transitions:
-
-You can also disable transitions completely:
-
-```css
-.md-juice { --juice-transition: 0ms; }
-```
-
-#### Tailwind compatibility
-
-* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
-* Load order: include **after** Tailwind if you want md-juice to win on Markdown.
-
-#### Syntax highlighting
-
-md-juice ships only minimal color tokens. Use a highlighter for full language scopes.  
-You can still override `--mdj-syntax-*` for custom hues.
-
-### FAQ quick answers
-
-| Need | Do this |
-|------|---------|
-| Faster theme | `.md-juice { --juice-color-* overrides }` |
-| Precise tweak | `.md-juice { --mdj-code-bg:#faf7ff }` (or inline style on one instance) |
-| Disable animation | `.md-juice { --mdj-transition:0ms }` |
-| Custom code bg only | `.md-juice { --mdj-code-bg: #faf7ff }` |
-| Dark toggle JS | `scope.setAttribute('data-theme','dark')` (where scope = `.md-juice`) |
-
-<br />
-
-## CSS design tokens
+## Theming
 
 ### Layer 1 – Fast tokens (`--juice-*`)
 
@@ -129,18 +98,17 @@ Set these to theme quickly.
 | `--juice-color-accent` | `var(--juice-color-interactive)` | `var(--juice-color-interactive)` | Focus / accent alias |
 | `--juice-color-surface-code` | `var(--juice-color-bg-alt)` | `var(--juice-color-bg-alt)` | Code blocks & inline code |
 
-### Typography & layout primitives
+#### Typography & layout primitives
 
-These fast tokens drive base typography & spacing.
-
-| Token | Maps to granular | Purpose |
-|-------|------------------|---------|
-| `--juice-font-family-base` | `--mdj-font-family` | Base text font stack |
-| `--juice-font-family-monospace` | `--mdj-monospace` | Code / monospace font stack |
-| `--juice-font-size-base` | `--mdj-font-size` | Root font size (affects rem) |
-| `--juice-line-height-base` | `--mdj-line-height` | Global line height |
-| `--juice-radius-base` | `--mdj-radius` | Shared corner radius (code, kbd, etc.) |
-| `--juice-transition` | `--mdj-transition` | Theme transition duration |
+| Token | Default | Maps to granular | Purpose |
+|------|---------|------------------|---------|
+| `--juice-font-family-base` | system stack | `--mdj-font-family` | Base text font stack |
+| `--juice-font-family-monospace` | monospace stack | `--mdj-monospace` | Code / monospace font stack |
+| `--juice-font-size-base` | `16px` | `--mdj-font-size` | Root font size (affects rem) |
+| `--juice-line-height-base` | `1.5` | `--mdj-line-height` | Global line height |
+| `--juice-radius-base` | `6px` | `--mdj-radius` | Shared corner radius (code, kbd, etc.) |
+| `--juice-transition` | `150ms` | `--mdj-transition` | Theme transition duration |
+| `--juice-transition-timing` | `cubic-bezier(0.4, 0, 0.2, 1)` | `--mdj-transition-timing` | Theme transition timing |
 
 ---
 
@@ -174,6 +142,36 @@ Override **only** when a specific surface must differ from the fast mapping.
 | `--mdj-transition` | `150ms` | Theme transition speed |
 | `--mdj-syntax-*` | fixed colors | Minimal syntax hues |
 
+### Transitions
+
+By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind.
+
+If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet.
+
+Set `--juice-transition` and `--juice-transition-timing` to match your app:
+
+```css
+.md-juice { --juice-transition: 200ms; }
+.md-juice { --juice-transition-timing: ease-in-out; }
+```
+
+#### Disable transitions:
+
+You can also disable transitions completely:
+
+```css
+.md-juice { --juice-transition: 0ms; }
+```
+
+### Tailwind compatibility
+
+* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
+* Load order: include **after** Tailwind if you want md-juice to win on Markdown.
+
+### Syntax highlighting
+
+md-juice ships only minimal color tokens. Use a highlighter for full language scopes.  
+You can still override `--mdj-syntax-*` for custom hues.
 
 ---
 Enjoy rapid theming. PRs welcome.
