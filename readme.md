@@ -47,8 +47,8 @@ npm install @aruidev/md-juice
 
 ### Basic setup
 
-#### Import the Styles  
-Import the MD-Juice CSS to your global styles by updating the global styles.css file. This ensures the styles are available application-wide without conflicts.
+#### Import Styles  
+Import the MD-Juice CSS to your global styles.
 
 ```css
 @import '@aruidev/md-juice';
@@ -162,13 +162,15 @@ You can also disable transitions completely:
 
 ### Tailwind compatibility
 
-Works side by side; MD-Juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.  
-Load order: include **after** Tailwind if you want MD-Juice to win on Markdown.
+- Works side-by-side with Tailwind.  
+- MD-Juice styles only the markdown body inside a .md-juice scope.  
+- Load it after Tailwind if you want MD-Juice to take precedence for Markdown.  
 
 ### Syntax highlighting
 
-md-juice ships only minimal color tokens. Use a highlighter for full language scopes.  
-You can still override `--mdj-syntax-*` for custom hues.
+MD-Juice provides only minimal syntax tokens.
+For full language highlighting, use a syntax highlighter alongside MD-Juice.
+You can still override individual `--mdj-syntax-*` for custom hues.
 
 ---
 
