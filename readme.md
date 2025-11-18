@@ -1,7 +1,9 @@
-# md-juice
+# MD-Juice
+
+## Overview
 
 **A drop-in CSS theme for rendered Markdown HTML**.  
-Works with any framework, any renderer, or plain HTML. Two layers of customization let you theme quickly or fine-tune elements. 
+Works with any framework, any renderer, or plain HTML. Two layers of customization let you theme quickly, fine-tune individual elements, or simply keep the default GitHub-like look.
 
 <table>
   <tr>
@@ -16,33 +18,28 @@ Works with any framework, any renderer, or plain HTML. Two layers of customizati
 
 ## Table of Contents
 
-- [Why MD-Juice?](#why-md-juice)
+- [Why md-juice?](#why-md-juice)
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
-- [Theming (CSS Variables)](#theming)
+- [Theming](#theming)
 - [Transitions](#transitions)
 - [Tailwind Compatibility](#tailwind-compatibility)
 - [Syntax Highlighting](#syntax-highlighting)
 
 
-## Why md-juice?
+## Why MD-Juice?
 
 Quickly style Markdown HTML with **conflict-free, framework-agnostic CSS**. 
 
 **Use cases:** Docs, blogs, wikis, notes apps, README previews, static sites  
-**Key benefits:** Fast theming, framework-agnostic, conflict-free styling 
-
-### Features: 
-- Token-driven theming with two customization layers
-- Built-in light/dark theme support
-- Zero JavaScript dependency
-- GitHub-like default styling 
+**Key benefits:** Fast theming, framework-agnostic, conflict-free styling
+**Features:** GitHub-like default style, zero JS, built-in light/dark themes
 
 ## Getting Started
 
 ### Installation
 
-To get started, install md-juice:  
+To get started, install MD-Juice:  
 
 ```bash
 npm install @aruidev/md-juice
@@ -51,7 +48,7 @@ npm install @aruidev/md-juice
 ### Basic setup
 
 #### Import the Styles  
-Import the md-juice CSS to your global styles by updating the global styles.css file. This ensures the styles are available application-wide without conflicts.
+Import the MD-Juice CSS to your global styles by updating the global styles.css file. This ensures the styles are available application-wide without conflicts.
 
 ```css
 @import '@aruidev/md-juice';
@@ -144,7 +141,7 @@ Override **only** when a specific surface must differ from the fast mapping.
 
 ### Transitions
 
-By default md-juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind.
+By default MD-Juice uses Tailwind's default transition values (`150ms` + `cubic-bezier(0.4,0,0.2,1)`) so it visually blends into projects already using Tailwind.
 
 If the rest of your app (e.g. layout, buttons) uses a different speed/easing and you notice a mismatch, just override after loading the stylesheet.
 
@@ -165,8 +162,8 @@ You can also disable transitions completely:
 
 ### Tailwind compatibility
 
-* Works side by side; md-juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.
-* Load order: include **after** Tailwind if you want md-juice to win on Markdown.
+Works side by side; MD-Juice only styles descendants of `.markdown-body` inside a `.md-juice` scope.  
+Load order: include **after** Tailwind if you want MD-Juice to win on Markdown.
 
 ### Syntax highlighting
 
@@ -174,6 +171,7 @@ md-juice ships only minimal color tokens. Use a highlighter for full language sc
 You can still override `--mdj-syntax-*` for custom hues.
 
 ---
-Enjoy rapid theming. PRs welcome.
+
+Enjoy rapid theming. Issues & PRs welcome.
 
 
