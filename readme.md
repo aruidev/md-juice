@@ -32,7 +32,7 @@ Works with any framework, any renderer, or plain HTML. Two layers of customizati
 Quickly style Markdown HTML with **conflict-free, framework-agnostic CSS**. 
 
 **Use cases:** Docs, blogs, wikis, notes apps, README previews, static sites  
-**Key benefits:** Fast theming, framework-agnostic, conflict-free styling
+**Key benefits:** Fast theming, framework-agnostic, conflict-free styling  
 **Features:** GitHub-like default style, zero JS, built-in light/dark themes
 
 ## Getting Started
