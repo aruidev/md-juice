@@ -168,9 +168,9 @@ You can also disable transitions completely:
 
 ### Syntax highlighting
 
-MD-Juice provides only minimal syntax tokens.
-For full language highlighting, use a syntax highlighter alongside MD-Juice.
-You can still override individual `--mdj-syntax-*` for custom hues.
+- MD-Juice provides only minimal syntax tokens.
+- For full language highlighting, use a syntax highlighter alongside MD-Juice.
+- You can still override individual `--mdj-syntax-*` for custom hues.
 
 ---
 
