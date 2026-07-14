@@ -1,5 +1,5 @@
 {
-  "name": "@aruidev/md-juice",
+  "name": "md-juice",
   "version": "1.0.0",
   "description": "Lightweight, customizable CSS stylesheet for styling Markdown HTML output",
   "main": "index.cjs",
@@ -19,15 +19,15 @@
     "theme",
     "styles"
   ],
-  "author": "aruidev",
+  "author": "aruizcastillo",
   "license": "MIT",
-  "homepage": "https://github.com/aruidev/md-juice#readme",
+  "homepage": "https://github.com/aruizcastillo/md-juice#readme",
   "bugs": {
-    "url": "https://github.com/aruidev/md-juice/issues"
+    "url": "https://github.com/aruizcastillo/md-juice/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aruidev/md-juice"
+    "url": "https://github.com/aruizcastillo/md-juice"
   },
   "scripts": {
     "build": "echo \"No build step\"",

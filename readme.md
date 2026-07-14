@@ -7,10 +7,10 @@ Works with any framework, any renderer, or plain HTML. Two layers of customizati
 
 <table>
   <tr>
-    <td><img alt="Captura de pantalla 2025-09-18 162047" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" alt="md-juice demo (light)" width=400 />
+    <td><img alt="Default light theme screenshot" src="https://github.com/user-attachments/assets/7a4a6bdf-eb28-411a-b657-ddb86a91f75d" alt="md-juice demo (light)" width=400 />
 
 </td>
-    <td><img alt="Captura de pantalla 2025-09-18 162102" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" alt="md-juice demo (dark)" width=400 />
+    <td><img alt="Default dark theme screenshot" src="https://github.com/user-attachments/assets/b2b7a6e1-fc14-4906-8e1f-7aece68d3e34" alt="md-juice demo (dark)" width=400 />
 
 </td>
   </tr>
@@ -42,7 +42,7 @@ Quickly style Markdown HTML with **conflict-free, framework-agnostic CSS**.
 To get started, install MD-Juice:  
 
 ```bash
-npm install @aruidev/md-juice
+npm install md-juice
 ```
 
 ### Basic setup
@@ -51,7 +51,7 @@ npm install @aruidev/md-juice
 Import the MD-Juice CSS to your global styles.
 
 ```css
-@import '@aruidev/md-juice';
+@import 'md-juice';
 ```
 
 ### Basic usage
